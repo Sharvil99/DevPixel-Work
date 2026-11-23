@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal 27 — June 9–11, San Francisco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#111116; --cobalt:#4A63E8; --cobalt-d:#2B3FA8; --pink:#FF5A3C; --butter:#EFE6D3; --paper:#F6F3EE;
+  --ink:#15151C; --ink2:#5E5A55; --line:#E4E4EC; --mint:#2ED3A0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper)}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);font-size:15px;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Big Shoulders Display",sans-serif;font-weight:900;letter-spacing:-.01em;line-height:.86;text-transform:uppercase}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.page{width:100%;min-width:1280px;margin:0 auto;overflow:hidden}
+.wrap{padding:0 56px}
+.btn{height:48px;padding:0 22px;border-radius:99px;border:0;font:700 15px "DM Sans";display:inline-flex;align-items:center;gap:10px}
+.btn.pink{background:var(--pink);color:#fff}
+.btn.ink{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}
+
+/* hero */
+.hero{background:radial-gradient(900px 500px at 88% 8%,rgba(255,90,60,.16),transparent 60%),var(--night);color:#F5F1EA;position:relative;padding-bottom:0}
+.nav{display:flex;align-items:center;gap:36px;height:84px}
+.brand{font-family:"Big Shoulders Display";font-weight:900;font-size:30px;letter-spacing:.01em;display:flex;align-items:center;gap:10px}
+.brand i{width:26px;height:26px;border-radius:50%;background:var(--butter);position:relative;display:block}
+.brand i::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--night)}
+.nav a{color:#fff;opacity:.85;text-decoration:none;font-weight:500}
+.nav .sp{flex:1}
+.big{font-size:min(366px,calc((100vw - 112px)*.2756));color:var(--butter);margin:18px 0 0 -10px;white-space:nowrap;display:flex;align-items:flex-end;gap:28px}
+.big .yr{color:var(--pink);font-size:min(366px,calc((100vw - 112px)*.2756))}
+.info{display:grid;grid-template-columns:1.05fr 1fr 1.25fr auto;gap:40px;align-items:end;padding:34px 0 40px;border-top:2px solid rgba(255,255,255,.25);margin-top:26px}
+.info .k{font-size:13px;opacity:.7;margin-bottom:6px}
+.info .v{font-family:"Big Shoulders Display";font-weight:800;font-size:38px;line-height:1;text-transform:uppercase}
+.info p{margin:0;font-size:17px;line-height:1.45;opacity:.92;max-width:360px}
+.cta{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.count{display:flex;gap:6px}
+.count div{background:rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;text-align:center;min-width:56px}
+.count b{display:block;font-family:"Big Shoulders Display";font-size:26px;line-height:1}
+.count small{font-size:11px;opacity:.75}
+
+/* marquee */
+.marq{background:var(--pink);color:#fff;display:flex;gap:40px;white-space:nowrap;padding:16px 0;font-family:"Big Shoulders Display";font-weight:800;font-size:34px;text-transform:uppercase;transform:rotate(-1.2deg);margin:-14px -20px 0;position:relative;z-index:2}
+.marq span{display:flex;align-items:center;gap:40px}
+.marq span::after{content:"";width:14px;height:14px;background:var(--butter);border-radius:50%}
+
+/* agenda */
+.agenda{padding:110px 0 90px}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px}
+.sh h2{font-size:120px;margin:0}
+.sh p{margin:0;max-width:400px;color:var(--ink2);font-size:17px;line-height:1.5}
+.ag{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px}
+.ctrl{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.days{display:flex;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px}
+.days span{padding:9px 18px;border-radius:99px;font-weight:600;color:var(--ink2);font-size:14px}
+.days span b{font-weight:700}
+.days span.on{background:var(--ink);color:#fff}
+.tracks{display:flex;gap:8px;margin-left:auto}
+.tr{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;padding:8px 12px;border-radius:99px;border:1px solid var(--line);background:#fff}
+.tr i{width:10px;height:10px;border-radius:3px;display:block}
+.tr.off{opacity:.45}
+.sched{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.rooms{display:grid;grid-template-columns:84px repeat(3,1fr);border-bottom:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink2)}
+.rooms div{padding:12px 14px;border-left:1px solid var(--line)}.rooms div:first-child{border-left:0}
+.row{display:grid;grid-template-columns:84px repeat(3,1fr);border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .t{padding:14px;font-family:"Big Shoulders Display";font-weight:800;font-size:22px;color:var(--ink2)}
+.row .c{padding:8px;border-left:1px solid var(--line)}
+.s{border-radius:14px;padding:12px 12px 12px 14px;position:relative;height:100%;min-height:104px;display:flex;flex-direction:column}
+.s .tk{font-size:12px;font-weight:700;opacity:.8}
+.s h4{margin:5px 0 8px;font-size:15.5px;line-height:1.25;font-weight:700;padding-right:30px}
+.s .who{margin-top:auto;display:flex;align-items:center;gap:7px;font-size:12.5px;opacity:.85}
+.s .who i{width:20px;height:20px;border-radius:50%;display:block;background:rgba(0,0,0,.18)}
+.add{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.6);color:var(--ink)}
+.s.in .add{background:var(--ink);color:#fff}
+.s.in{box-shadow:inset 0 0 0 2.5px var(--ink)}
+.t-ai{background:#E6E9F8;color:#2B3FA8}
+.t-cl{background:#FBE4DC;color:#A8361F}
+.t-ld{background:#F0E8D5;color:#6B5420}
+.t-br{background:var(--ink);color:#fff}
+.t-br .tk{opacity:.6}
+.full{font-size:11.5px;font-weight:700;background:rgba(0,0,0,.08);border-radius:6px;padding:2px 6px;margin-left:6px}
+
+.mine{background:var(--ink);color:#fff;border-radius:22px;padding:22px;align-self:start}
+.mine h3{margin:0;font-family:"Big Shoulders Display";font-size:42px;text-transform:uppercase;line-height:.95}
+.mine .sub{font-size:13.5px;opacity:.65;margin:6px 0 16px}
+.mi{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.12)}
+.mi .tm{font-family:"Big Shoulders Display";font-weight:800;font-size:20px;width:54px;flex:none;color:var(--butter)}
+.mi b{display:block;font-size:14px;line-height:1.3}
+.mi small{font-size:12.5px;opacity:.6}
+.warn{display:flex;gap:10px;background:rgba(255,61,110,.16);color:#FFC9BC;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.4;margin:6px 0 16px}
+.mine .btn{width:100%;justify-content:center;background:var(--butter);color:var(--ink)}
+.mine .ln{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:13px;opacity:.75}
+
+/* speakers */
+.spk{padding:0 0 100px}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sp-card .ph{height:300px;border-radius:22px;position:relative;overflow:hidden}
+.ph .head{position:absolute;width:118px;height:132px;border-radius:50%;left:50%;top:62px;transform:translateX(-50%)}
+.ph .body{position:absolute;width:250px;height:200px;border-radius:125px 125px 0 0;left:50%;bottom:-70px;transform:translateX(-50%)}
+.ph .hair{position:absolute;width:132px;height:80px;border-radius:66px 66px 20px 20px;left:50%;top:52px;transform:translateX(-50%)}
+.ph .tagk{position:absolute;left:14px;top:14px;font-size:12px;font-weight:700;background:rgba(255,255,255,.9);color:var(--ink);border-radius:99px;padding:5px 10px}
+.sp-card h4{margin:14px 0 2px;font-size:19px;font-weight:700}
+.sp-card p{margin:0;color:var(--ink2);font-size:14px}
+
+/* tickets */
+.tix{background:var(--butter);padding:100px 0}
+.tix .sh h2{color:var(--ink)}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tk-c{background:#fff;border-radius:24px;padding:28px;position:relative;display:flex;flex-direction:column}
+.tk-c.hot{background:var(--ink);color:#fff}
+.tk-c h3{margin:0;font-family:"Big Shoulders Display";font-size:44px;text-transform:uppercase;line-height:.95}
+.tk-c .d{color:var(--ink2);margin:8px 0 18px;font-size:15px}
+.tk-c.hot .d{color:#B9B9D6}
+.price{font-family:"Big Shoulders Display";font-weight:900;font-size:84px;line-height:.9}
+.price small{font-family:"DM Sans";font-size:15px;font-weight:500;opacity:.6;margin-left:6px}
+.was{font-size:14px;margin-top:6px;opacity:.7}
+.was s{margin-right:6px}
+.tk-c ul{list-style:none;padding:0;margin:22px 0 26px;display:flex;flex-direction:column;gap:10px}
+.tk-c li{display:flex;gap:10px;font-size:15px}
+.tk-c li svg{color:var(--cobalt);margin-top:2px}
+.tk-c.hot li svg{color:var(--butter)}
+.tk-c .btn{margin-top:auto;justify-content:center}
+.ribbon{position:absolute;top:22px;right:22px;background:var(--pink);color:#fff;font-size:12.5px;font-weight:700;border-radius:99px;padding:6px 12px}
+.left{font-size:13px;font-weight:600;color:var(--pink);margin-top:12px;text-align:center}
+
+.foot{background:var(--night);color:#fff;padding:56px 0 44px}
+.fr{display:flex;align-items:flex-end;justify-content:space-between}
+.foot .disp{font-size:150px;color:transparent;-webkit-text-stroke:1.5px #3A3A44}
+.foot nav{display:flex;gap:28px;opacity:.8;font-size:14px}
+
+/* ---- proportion pass ---- */
+.wrap{padding:0 clamp(64px,6.5vw,120px);max-width:1680px;margin:0 auto}
+.nav{height:92px}
+.big{font-size:min(300px,calc((100vw - 2*clamp(64px,6.5vw,120px))*.235));margin:44px 0 0 -8px;gap:3vw;line-height:.82}
+.big .yr{font-size:inherit}
+.info{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:72px;align-items:end;padding:44px 0 92px;margin-top:48px;border-top:1px solid rgba(245,241,234,.18)}
+.facts{display:grid;grid-template-columns:auto auto;justify-content:start;gap:64px}
+.info .k{font-size:12.5px;letter-spacing:.04em;opacity:.6;margin-bottom:10px}
+.info .v{font-size:34px;white-space:nowrap}
+.count{display:flex;gap:6px}
+.count div{background:rgba(255,255,255,.08);border-radius:10px;padding:5px 10px;min-width:54px;text-align:center}
+.count b{font-size:24px}
+.pitch p{margin:0 0 22px;font-size:18px;line-height:1.55;opacity:.85;max-width:440px}
+.cbtns{display:flex;gap:12px}
+.marq{font-size:28px;padding:18px 0;gap:48px}
+.marq span{gap:48px}
+.agenda{padding:170px 0 130px}
+.sh{margin-bottom:52px;gap:60px}
+.sh h2{font-size:clamp(72px,6.4vw,104px);line-height:.88}
+.sh p{font-size:17.5px;line-height:1.6;max-width:380px}
+.ag{grid-template-columns:minmax(0,1fr) 380px;gap:36px}
+.ctrl{margin-bottom:22px}
+.row .t{padding:18px 16px;font-size:22px}
+.row .c{padding:10px}
+.s{min-height:124px;padding:14px 14px 14px 16px}
+.s h4{font-size:16px;margin:6px 0 12px}
+.mine{padding:28px}
+.mine h3{font-size:40px}
+.mi{padding:14px 0}
+.spk{padding:30px 0 150px}
+.sg{gap:28px}
+.sp-card .ph{height:360px;border-radius:26px}
+.ph .head{top:84px}.ph .hair{top:74px}
+.sp-card h4{margin:18px 0 4px;font-size:20px}
+.tix{padding:150px 0}
+.tg{gap:28px}
+.tk-c{padding:40px 36px;border-radius:28px}
+.tk-c h3{font-size:42px}
+.tk-c .d{margin:10px 0 26px}
+.price{font-size:80px}
+.tk-c ul{margin:28px 0 36px;gap:13px}
+.foot{padding:90px 0 60px}
+.foot .disp{font-size:clamp(110px,10vw,160px)}
+.big{justify-content:space-between;margin-right:-6px}
+.doors{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:13.5px;opacity:.7}
+.doors i{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(255,90,60,.2)}
+.doors b{font-weight:600}
+.ag{grid-template-columns:minmax(0,1fr) 340px;gap:32px}
+.info{grid-template-columns:minmax(0,1fr) auto;row-gap:40px;padding-top:36px}
+.info .lede{grid-column:1/-1;margin:0;font-size:clamp(18px,1.62vw,30px);line-height:1.3;white-space:nowrap;letter-spacing:-.01em;opacity:.9;max-width:none}
+.pitch{display:flex;flex-direction:column;align-items:flex-end}
+.doors{justify-content:flex-end}
+
+/* ---- programme-style agenda ---- */
+.ag{grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:start}
+.pbar{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.dtabs{display:flex;gap:28px}
+.dtabs span{font-family:"Big Shoulders Display";font-weight:800;font-size:34px;text-transform:uppercase;line-height:1;color:#B9B2A8;position:relative;padding-bottom:4px}
+.dtabs span.on{color:var(--ink)}
+.dtabs span.on::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:4px;background:var(--pink)}
+.flt{display:flex;gap:16px;align-items:center;font-size:13.5px;color:var(--ink2)}
+.flt .f{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:var(--ink)}
+.flt .f i{width:10px;height:10px;display:block}
+.flt .f:not(.on){color:#B9B2A8;text-decoration:line-through}
+.flt .f:not(.on) i{opacity:.35}
+.rooms{display:grid;grid-template-columns:110px repeat(3,minmax(0,1fr));font-size:12.5px;font-weight:600;color:var(--ink2);padding:14px 0 10px}
+.rooms span{padding-left:18px}
+.trow{display:grid;grid-template-columns:110px repeat(3,minmax(0,1fr));border-top:1px solid #D9D2C7}
+.tm{padding:22px 0}
+.tm b{display:block;font-family:"Big Shoulders Display";font-weight:800;font-size:34px;line-height:.9}
+.tm span{display:block;font-size:12px;color:var(--ink2);margin-top:6px}
+.se{padding:22px 18px 22px;border-left:1px solid #E6E0D6;position:relative;display:flex;flex-direction:column}
+.se.wide{grid-column:span 3}
+.se .tk{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--ink2)}
+.se .tk i{width:9px;height:9px;display:block}
+.se .tk em{font-style:normal;color:var(--pink)}
+.se h4{margin:8px 0 6px;font-size:17px;line-height:1.3;font-weight:600;letter-spacing:-.01em;max-width:28ch}
+.se.wide h4{font-family:"Big Shoulders Display";font-weight:800;font-size:40px;line-height:.95;text-transform:uppercase;letter-spacing:0;max-width:24ch}
+.se .by{font-size:13px;color:var(--ink2)}
+.act{margin-top:14px;font-size:13px;font-weight:700;color:var(--ink);align-self:flex-start;border-bottom:1.5px solid var(--ink);padding-bottom:1px}
+.act.in{color:var(--pink);border-color:transparent}
+.act.in::before{content:"✓ "}
+.act.isfull{color:var(--ink2);font-weight:600;border-color:#C9C1B5}
+.se.in::before{content:"";position:absolute;left:-1px;top:22px;bottom:22px;width:3px;background:var(--pink)}
+.se.isfull h4,.se.isfull .by{color:#9C958B}
+.pfoot{display:flex;justify-content:space-between;border-top:2px solid var(--ink);padding-top:14px;font-size:13.5px;color:var(--ink2)}
+.pfoot a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--ink)}
+
+.stub{position:sticky;top:24px;background:#EFE8DC;border-radius:6px;padding:26px 24px 22px;-webkit-mask:radial-gradient(circle 11px at 0 calc(100% - 96px),#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% calc(100% - 96px),#0000 98%,#000) right/51% 100% no-repeat}
+.sth span{font-size:12.5px;font-weight:600;color:var(--ink2)}
+.sth b{display:block;font-size:38px;line-height:.95;text-transform:uppercase;margin-top:4px}
+.stub ol{list-style:none;margin:18px 0 0;padding:0;border-top:2px solid var(--ink)}
+.stub li{display:grid;grid-template-columns:58px 1fr;gap:8px;padding:12px 0;border-bottom:1px solid #D9D0C2;font-size:14px;line-height:1.35}
+.stub li b{font-family:"Big Shoulders Display";font-weight:800;font-size:21px;line-height:1}
+.stub li small{display:block;font-size:12px;color:var(--ink2);margin-top:3px}
+.stub li.clash b{color:var(--pink)}
+.cl{margin:14px 0 0;font-size:13px;line-height:1.45;color:#9A3A24}
+.perf{margin:22px -24px 20px;border-top:2px dashed #CFC5B5}
+.sbtn{width:100%;justify-content:center;background:var(--ink);color:#fff}
+.sl{display:flex;justify-content:center;gap:22px;margin-top:12px;font-size:13px}
+.sl a{color:var(--ink2);text-decoration:none}
+/* ---- tighter hero ---- */
+.nav{height:80px}
+.big{font-size:min(240px,calc((100vw - 2*clamp(64px,6.5vw,120px))*.19));margin-top:20px;line-height:.8}
+.info{margin-top:30px;padding:26px 0 60px;row-gap:26px}
+.info .lede{font-size:clamp(17px,1.45vw,26px)}
+.info .v{font-size:28px}
+.info .k{margin-bottom:6px}
+.doors{margin-top:12px}
+.big{justify-content:flex-start;gap:.22em}
+/* ---- hero fills the viewport, content anchored low ---- */
+.hero{min-height:calc(100vh - 46px);min-height:calc(100svh - 46px);display:flex;flex-direction:column}
+.hero>.wrap{flex:1;display:flex;flex-direction:column;width:100%}
+.hero .big{margin-top:auto;padding-top:40px;font-size:min(300px,calc((100vw - 2*clamp(64px,6.5vw,120px))*.215),34vh)}
+.hero .info{margin-top:34px;padding:28px 0 72px}
+.topline{display:flex;justify-content:space-between;gap:24px;padding:22px 0 0;margin-top:6px;border-top:1px solid rgba(245,241,234,.14);font-size:13px;color:rgba(245,241,234,.62)}
+.topline span:nth-child(2){text-align:center}
+.hero .big{font-size:min(400px,calc((100vw - 2*clamp(64px,6.5vw,120px))*.262),44vh);justify-content:space-between;gap:0}
+/* ---- readable fine print ---- */
+.topline{font-size:15px;font-weight:500;color:rgba(245,241,234,.86);padding-top:20px}
+.topline span:last-child{color:var(--pink);font-weight:600}
+.info .k{font-size:14px;font-weight:500;opacity:.78;letter-spacing:0;margin-bottom:8px}
+.doors{font-size:15px;opacity:.88}
+.info .lede{opacity:1}
+</style>
+</head>
+<body>
+<div class="page">
+  <section class="hero">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand"><i></i>SIGNAL</div>
+        <a href="#">Program</a><a href="#">Speakers</a><a href="#">Workshops</a><a href="#">Venue</a><a href="#">Sponsor</a>
+        <span class="sp"></span>
+        <a href="#">Sign in</a>
+        <button class="btn pink" style="height:42px">Get tickets</button>
+      </div>
+      <div class="topline"><span>Edition nine</span><span>The conference for people who teach, train and build learning</span><span>Early passes on sale now</span></div>
+      <div class="big disp"><span>Signal</span><span class="yr">27</span></div>
+      <div class="info">
+        <p class="lede">Three days, 140 sessions and 4,000 people rethinking how the world learns, from classrooms to boardrooms.</p>
+        <div class="facts">
+          <div><div class="k">When</div><div class="v">June 9–11, 2027</div></div>
+          <div><div class="k">Where</div><div class="v">Pier 27, San Francisco</div></div>
+        </div>
+        <div class="pitch">
+          <div class="cbtns"><button class="btn pink">Get tickets</button><button class="btn ghost">Watch 2026 recap</button></div>
+          <div class="doors"><i></i><span>Doors open in <b>201 days</b> · early passes end March 1</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marq"><span>AI in the classroom</span><span>Learning design</span><span>Leadership</span><span>Equity &amp; access</span><span>EdTech that works</span><span>Assessment</span><span>AI in the classroom</span><span>Learning design</span></div>
+
+  <section class="agenda">
+    <div class="wrap">
+      <div class="sh"><h2 class="disp">Build your days</h2><p>Pick sessions as you browse. We'll flag clashes, hold your seat in workshops and send it all to your calendar.</p></div>
+      <div class="ag">
+        <div class="prog">
+          <div class="pbar">
+            <div class="dtabs"><span class="on">Wed 9</span><span>Thu 10</span><span>Fri 11</span></div>
+            <div class="flt"><span>Show</span><span class="f on"><i style="background:#4A63E8"></i>AI &amp; data</span><span class="f on"><i style="background:var(--pink)"></i>Classroom</span><span class="f on"><i style="background:#C9A24A"></i>Leadership</span><span class="f"><i style="background:var(--mint)"></i>Research</span></div>
+          </div>
+          <div class="rooms"><span></span><span>Main stage</span><span>Studio A</span><span>Workshop lab</span></div>
+          <div class="trow key"><div class="tm"><b>9:00</b><span>to 10:00</span></div><div class="se in wide"><div class="tk">Opening keynote · Main stage</div><h4>What students will need in 2035, and what we can stop teaching</h4><div class="by">Dr. Amara Okafor, MIT Media Lab</div><span class="act in">In my days</span></div></div>
+          <div class="trow"><div class="tm"><b>10:30</b><span>to 11:15</span></div><div class="se in"><div class="tk"><i style="background:#4A63E8"></i>AI &amp; data</div><h4>Grading with AI without losing the human</h4><div class="by">Leo Martins, Lisbon</div><span class="act in">In my days</span></div><div class="se "><div class="tk"><i style="background:var(--pink)"></i>Classroom</div><h4>Project-based learning in 45-minute periods</h4><div class="by">Hana Sato, Classroom Lab</div><span class="act">+ Add</span></div><div class="se "><div class="tk"><i style="background:#C9A24A"></i>Leadership · <em>6 seats left</em></div><h4>Write your district AI policy in 90 minutes</h4><div class="by">Marcus Bell, Oakland USD</div><span class="act">+ Add</span></div></div><div class="trow"><div class="tm"><b>13:00</b><span>to 13:45</span></div><div class="se in"><div class="tk"><i style="background:var(--pink)"></i>Classroom</div><h4>Student voice: a panel run by 8th graders</h4><div class="by">Youth panel, Mission Middle</div><span class="act in">In my days</span></div><div class="se in"><div class="tk"><i style="background:#4A63E8"></i>AI &amp; data</div><h4>Choosing edtech you can actually trust</h4><div class="by">Priya Desai, EdTrust</div><span class="act in">In my days</span></div><div class="se isfull"><div class="tk"><i style="background:#4A63E8"></i>AI &amp; data</div><h4>Build a classroom chatbot, no code</h4><div class="by">Sam Reyes</div><span class="act isfull">Full · join waitlist</span></div></div><div class="trow"><div class="tm"><b>15:00</b><span>to 16:30</span></div><div class="se "><div class="tk"><i style="background:#C9A24A"></i>Leadership</div><h4>Funding innovation when budgets shrink</h4><div class="by">Grace Liu</div><span class="act">+ Add</span></div><div class="se "><div class="tk"><i style="background:var(--pink)"></i>Classroom</div><h4>Designing for every learner from day one</h4><div class="by">Omar Haddad</div><span class="act">+ Add</span></div><div class="se in"><div class="tk"><i style="background:#4A63E8"></i>AI &amp; data · <em>seat held</em></div><h4>Prompt craft for lesson planning</h4><div class="by">Ines Kowalski</div><span class="act in">In my days</span></div></div>
+          <div class="pfoot"><span>Showing 10 of 46 sessions on Wednesday</span><a href="#">See the full programme</a></div>
+        </div>
+
+        <aside class="stub">
+          <div class="sth"><span>Your days</span><b class="disp">Wed 9 June</b></div>
+          <ol>
+            <li><b>9:00</b><div>What students will need in 2035<small>Main stage</small></div></li>
+            <li><b>10:30</b><div>Grading with AI without losing the human<small>Main stage</small></div></li>
+            <li class="clash"><b>13:00</b><div>Student voice: a panel run by 8th graders<small>Main stage</small></div></li>
+            <li class="clash"><b>13:00</b><div>Choosing edtech you can actually trust<small>Studio A</small></div></li>
+            <li><b>15:00</b><div>Prompt craft for lesson planning<small>Workshop lab · seat held</small></div></li>
+          </ol>
+          <p class="cl">Two picks at 13:00. Keep one and we'll send you the recording of the other.</p>
+          <div class="perf"></div>
+          <button class="btn sbtn">Add to my calendar</button>
+          <div class="sl"><a href="#">Share</a><a href="#">Print</a></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="spk">
+    <div class="wrap">
+      <div class="sh"><h2 class="disp">On stage</h2><p>Teachers, researchers, founders and students. 120+ speakers, announced every Tuesday.</p></div>
+      <div class="sg">
+        <div class="sp-card"><div class="ph" style="background:var(--cobalt)"><span class="tagk">Keynote</span><div class="body" style="background:var(--butter)"></div><div class="head" style="background:#C68A5E"></div><div class="hair" style="background:#1B1B3A"></div></div><h4>Dr. Amara Okafor</h4><p>Director, MIT Media Lab</p></div>
+        <div class="sp-card"><div class="ph" style="background:var(--pink)"><div class="body" style="background:var(--ink)"></div><div class="head" style="background:#F1C7A5"></div><div class="hair" style="background:#C9A24A;height:64px"></div></div><h4>Leo Martins</h4><p>High school teacher, Lisbon</p></div>
+        <div class="sp-card"><div class="ph" style="background:var(--butter)"><span class="tagk">Workshop</span><div class="body" style="background:var(--cobalt)"></div><div class="head" style="background:#8D5A3B"></div><div class="hair" style="background:var(--ink);height:56px;border-radius:66px 66px 10px 10px"></div></div><h4>Marcus Bell</h4><p>Superintendent, Oakland USD</p></div>
+        <div class="sp-card"><div class="ph" style="background:var(--ink)"><div class="body" style="background:var(--pink)"></div><div class="head" style="background:#E9B98F"></div><div class="hair" style="background:#3A2A1E;height:96px;border-radius:66px 66px 40px 40px"></div></div><h4>Hana Sato</h4><p>Founder, Classroom Lab</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tix">
+    <div class="wrap">
+      <div class="sh"><h2 class="disp">Pick your pass</h2><p>Early prices end March 1. Groups of 5 or more from one school save another 15%.</p></div>
+      <div class="tg">
+        <div class="tk-c"><h3>Explorer</h3><div class="d">The full program, any one day</div><div class="price">$249<small>/ day</small></div><div class="was"><s>$329</s>Early price</div>
+          <ul><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>All talks and panels that day</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Expo hall and demo stage</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Recordings for 30 days</li></ul>
+          <button class="btn ink">Choose Explorer</button></div>
+        <div class="tk-c hot"><span class="ribbon">Most picked</span><h3>Full pass</h3><div class="d">All three days, plus workshops</div><div class="price">$649<small>/ person</small></div><div class="was"><s>$849</s>Early price</div>
+          <ul><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Every session, all three days</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Reserved seats in 4 workshops</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Recordings for 6 months</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Opening night party</li></ul>
+          <button class="btn pink">Choose Full pass</button><div class="left" style="color:var(--butter)">312 early passes left</div></div>
+        <div class="tk-c"><h3>School team</h3><div class="d">5 to 20 people from one school or district</div><div class="price">$549<small>/ person</small></div><div class="was">Billed to your district</div>
+          <ul><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Everything in Full pass</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Team agenda planner</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>PD credit certificates</li><li><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Invoice and PO payment</li></ul>
+          <button class="btn ink">Get a team quote</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap fr"><div class="disp">Signal 27</div><nav><a>Code of conduct</a><a>Accessibility</a><a>Press</a><a>Contact</a></nav></div>
+  </footer>
+</div>
+</body>
+</html>

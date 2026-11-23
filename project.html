@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project — DevPixel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="site/dp.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<div class="show">
+  <header class="top"><div class="wrap"><a class="mark" href="index-minimal.html"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a></div></header>
+
+  <div class="wrap">
+    <section id="top" data-topic="project">
+      <div class="pp-head">
+        <div class="crumbs"><a href="index-minimal.html#work">Work</a><i class="ph ph-caret-right"></i><a id="crumbRow" href="index-minimal.html#work"></a></div>
+        <h1 class="x" id="pname"></h1>
+        <div class="ptag2" id="ptag"></div>
+        <div class="pstats" id="pstats"></div>
+      </div>
+      <div class="viewer">
+        <div class="vbar"><span class="vtabs" id="tabs"></span><a class="vopen" id="vopen" href="#" target="_blank" rel="noopener">Open full screen<i class="ph ph-arrow-up-right"></i></a></div>
+        <div class="screen live"><div class="bar"><i></i><i></i><i></i><span id="vurl"></span></div><div class="vp"><iframe id="vframe" title="Live design"></iframe></div></div>
+        <div class="vhint">This is the live design. Scroll and click inside it.</div>
+      </div>
+    </section>
+
+    <section class="pp-more" id="more" data-topic="more">
+      <div class="row-h"><b id="moreTitle"></b><span id="moreCount"></span></div>
+      <div class="cgrid c2" id="moreGrid"></div>
+    </section>
+  </div>
+
+  <footer><div class="wrap">
+    <div class="fine" style="margin-top:0;border-top:0;padding-top:0"><span>© 2026 DevPixel Private Limited</span><span>info@devpixel.com</span></div>
+  </div></footer>
+</div>
+
+<aside class="chat" aria-label="Pixie, the DevPixel assistant">
+  <div class="ch-h">
+    <img class="ch-logo" src="work/assets/Logo%20Final.svg" alt="">
+    <div class="t"><b>Pixie</b><span><i></i>Reading along with you</span></div>
+    <div class="tools">
+      <button class="ib" id="newChat" data-tip="New chat" aria-label="New chat"><i class="ph ph-note-pencil"></i></button>
+      <button class="ib" id="fullBtn" data-tip="Full screen" aria-label="Full screen"><i class="ph ph-arrows-out-simple"></i></button>
+      <button class="ib" id="minBtn" data-tip="Minimise" aria-label="Minimise chat"><i class="ph ph-sidebar-simple"></i></button>
+    </div>
+  </div>
+
+  <div class="chat-in">
+  <div class="ctx" aria-live="polite">
+    <div class="ctx-top"><span>Viewing project</span><span class="step-n" id="step"></span><button class="ctx-tg" id="ctxTg" type="button" aria-label="Show details" aria-expanded="true"><i class="ph ph-caret-down"></i></button></div>
+    <div class="body" id="ctxBody"></div>
+  </div>
+
+  <div class="thread" id="thread"></div>
+
+  <div class="sugg" id="sugg"></div>
+
+  <div class="composer">
+    <form class="box" id="f">
+      <textarea id="q" rows="1" placeholder="Ask about this project…"></textarea>
+      <div class="bar2">
+        <span class="pctx" title="Pixie knows what you're looking at"><i class="ph ph-eye"></i><span id="pctx"></span></span>
+        <button class="send" id="send" aria-label="Send" disabled><i class="ph-bold ph-arrow-up"></i></button>
+      </div>
+    </form>
+    <div class="foot-note">Answers come from DevPixel's own pages and case studies</div>
+  </div>
+  </div>
+</aside>
+
+<button class="launch" id="launch" aria-label="Open Pixie">
+  <span class="l-bloom" aria-hidden="true"></span>
+  <span class="l-in">
+    <img class="l-logo" src="work/assets/Logo%20Final.svg" alt="">
+    <span class="l-t">Ask Pixie</span>
+  </span>
+  <span class="l-rim" aria-hidden="true"></span>
+</button>
+
+<script src="site/data.js"></script>
+<script src="site/chat.js"></script>
+<script>
+/* Project page. Left: the live design and its numbers. Right: what to look at in the screen you're viewing. */
+const pid=P[new URLSearchParams(location.search).get('p')]?new URLSearchParams(location.search).get('p'):'askerisa';
+const p=P[pid], row=ROWS[p.row], sibs=row.items.filter(x=>x!==pid);
+let scr=0, view='';
+document.title=`${p.name} — DevPixel`;
+
+/* left side */
+$('crumbRow').textContent=row.name; $('crumbRow').href=`index-minimal.html#${p.row}`;
+$('pname').textContent=p.name; $('ptag').textContent=p.tag;
+if(p.facts) $('pstats').innerHTML=p.facts.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join(''); else $('pstats').remove();
+if(p.screens.length>1) $('tabs').innerHTML=p.screens.map((s,i)=>`<button class="vtab" data-i="${i}">${s.label}</button>`).join('');
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.vtab'); if(b) setScreen(+b.dataset.i);});
+function setScreen(i){scr=i; const s=p.screens[i];
+  $('vframe').src=s.src; $('vurl').textContent=s.url; $('vopen').href=s.src;
+  document.querySelectorAll('.vtab').forEach((b,n)=>b.classList.toggle('on',n===i));
+  if(view==='project') DP.rerender();}
+
+const card=x=>`<a class="card wk" href="project.html?p=${x}">
+  <div class="wk-h"><div><h3 class="x">${P[x].name}</h3><span class="tag">${P[x].tag}</span></div><span class="wk-ic"><i class="ph ph-arrow-right"></i></span></div>
+  <div class="screen"><div class="bar"><i></i><i></i><i></i><span>${P[x].screens[0].url}</span></div><div class="vp"><iframe src="${P[x].screens[0].src}" title="${P[x].name}" loading="lazy" scrolling="no"></iframe></div></div></a>`;
+$('moreTitle').textContent=`More in ${row.name}`; $('moreCount').textContent=String(sibs.length).padStart(2,'0');
+$('moreGrid').innerHTML=sibs.map(card).join('')+(sibs.length===1?`<a class="card allwork" href="index-minimal.html#work"><div><h3 class="x">All work</h3><p>AI products, platforms and websites.</p></div><span class="more-l">Back to all work${ARROW}</span></a>`:'');
+
+/* right side */
+const projectView=()=>{const s=p.screens[scr];
+  return [`<div class="lvl">${row.name}</div><h4>${p.name}${p.screens.length>1?` · ${s.label}`:''}</h4><p>${p.say}</p>
+  <div class="lvl" style="margin-top:16px">What to look at</div><ol class="look">${s.look.map(l=>`<li><span>${l}</span></li>`).join('')}</ol>`,p.qs];};
+const moreView=()=>[`<div class="lvl">Keep exploring</div><h4>More in ${row.name}</h4><p>${row.say}</p>
+  <div class="plist">${sibs.map((x,n)=>`<button class="pitem" data-a="p:${x}"><span class="n">0${n+1}</span><span><b>${P[x].name}</b><small>${P[x].tag}</small></span>${ARROW}</button>`).join('')}</div>`,row.qs];
+function say(v){ if(v===view&&body.innerHTML) return; view=v;
+  $('pctx').textContent=v==='project'?p.name:`More in ${row.name}`; $('step').textContent=`Work · ${row.name}`;
+  const [h,a]=v==='project'?projectView():moreView(); render(h,a);}
+
+window.DP={
+  act(a){ if(a.startsWith('p:')){const x=a.slice(2); if(x===pid) scrollTo(0,0); else location.href=`project.html?p=${x}`;}
+          else if(a.startsWith('go:')){const id=a.slice(3); location.href=`index-minimal.html#${id==='top'?'':id}`;}
+          else if(a==='back') location.href=`index-minimal.html#${p.row}`; },
+  here(){ return pid; },
+  rerender(){ const [h,a]=view==='project'?projectView():moreView(); render(h,a); }
+};
+
+/* which part of the page you're on */
+const items=[...document.querySelectorAll('[data-topic]')];
+let stop=null;
+addEventListener('scroll',()=>{clearTimeout(stop); stop=setTimeout(()=>{const line=innerHeight*0.5;
+  const m=$('more').getBoundingClientRect(); say(m.top<line?'more':'project');},250);},{passive:true});
+setScreen(0); say('project'); fit();
+</script>
+</body>
+</html>

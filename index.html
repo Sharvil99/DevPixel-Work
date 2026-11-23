@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevPixel — AI research and product design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050A16; --bg2:#08112A;
+  --glass:linear-gradient(180deg,rgba(34,56,100,.42),rgba(10,20,42,.55));
+  --glass-flat:rgba(14,26,52,.55);
+  --line:rgba(150,185,255,.10); --line2:rgba(150,185,255,.20); --line3:rgba(170,200,255,.32);
+  --text:#EAF0FA; --text2:#A3B2CC; --text3:#6A7C9C;
+  --gold:#FBBC3F; --gold-t:rgba(251,188,63,.10);
+  --blue:#4F9DFF; --cyan:#7FD8FF; --blue-t:rgba(79,157,255,.14);
+  --chat:420px; --gap:16px;
+  --sh:inset 0 1px 0 rgba(255,255,255,.07),0 30px 60px -30px rgba(0,0,0,.85);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{background:var(--bg)}body{margin:0;background:transparent;color:var(--text)}
+body{font-family:Poppins,system-ui,sans-serif;font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.x{font-weight:600;letter-spacing:-.03em;line-height:1.02}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a{color:inherit}
+
+/* ===== atmosphere: blueprint grid, glows, perspective floor ===== */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(1200px 700px at 15% -10%,rgba(40,90,190,.35),transparent 60%),radial-gradient(900px 600px at 85% 30%,rgba(30,120,210,.18),transparent 60%),radial-gradient(800px 500px at 40% 110%,rgba(50,80,170,.25),transparent 60%),var(--bg)}
+.bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(120,170,255,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(120,170,255,.13) 1px,transparent 1px),linear-gradient(rgba(120,170,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(120,170,255,.05) 1px,transparent 1px);background-size:96px 96px,96px 96px,24px 24px,24px 24px;-webkit-mask-image:radial-gradient(ellipse 95% 85% at 40% 35%,#000 35%,transparent 95%);mask-image:radial-gradient(ellipse 95% 85% at 40% 35%,#000 35%,transparent 95%)}
+.bg .floor{position:absolute;left:-30%;right:-30%;bottom:-10%;height:55%;transform:perspective(600px) rotateX(62deg);transform-origin:50% 100%;background-image:linear-gradient(rgba(110,190,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(110,190,255,.5) 1px,transparent 1px);background-size:70px 70px;-webkit-mask-image:linear-gradient(to top,#000,transparent 85%);mask-image:linear-gradient(to top,#000,transparent 85%);opacity:.6;animation:floor 14s linear infinite}
+@keyframes floor{to{background-position:0 70px}}
+.bg .noise{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* glass surface */
+.gl{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border:1px solid var(--line2);box-shadow:var(--sh)}
+
+/* ===== layout ===== */
+.show{margin-right:calc(var(--chat) + var(--gap)*2);min-width:0}
+.chat{position:fixed;top:var(--gap);right:var(--gap);bottom:var(--gap);width:var(--chat);border-radius:26px;display:flex;flex-direction:column;z-index:20;overflow:hidden}
+
+/* ===== top nav ===== */
+.nav{position:sticky;top:var(--gap);z-index:10;display:flex;align-items:center;gap:30px;margin:var(--gap) 40px 0;padding:12px 14px 12px 22px;border-radius:999px}
+.mark{display:flex;align-items:center;gap:11px;font-weight:600;font-size:17px;letter-spacing:-.01em;text-decoration:none}
+.mark img{height:22px;display:block}
+.nav nav{display:flex;gap:26px;margin-left:auto;font-size:14px;color:var(--text2)}
+.nav nav a{text-decoration:none;transition:color .2s}
+.nav nav a:hover,.nav nav a.on{color:var(--text)}
+.nav .cta{font-size:13.5px;font-weight:500;padding:9px 18px;border-radius:99px;border:1px solid var(--line3);text-decoration:none;background:rgba(255,255,255,.04);transition:background .2s}
+.nav .cta:hover{background:rgba(255,255,255,.09)}
+
+.wrap{padding:0 56px}
+section{position:relative}
+
+/* ===== hero ===== */
+.hero{min-height:calc(100vh - 90px);display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:72px;overflow:hidden}
+.hero .chev{position:absolute;right:40px;top:80px;width:clamp(240px,26vw,380px);pointer-events:none;filter:drop-shadow(0 0 40px rgba(251,188,63,.18)) drop-shadow(0 0 80px rgba(79,157,255,.25))}
+.hero .halo{position:absolute;right:-60px;top:0;width:560px;height:480px;background:radial-gradient(closest-side,rgba(60,130,255,.30),transparent);pointer-events:none}
+.hero .kick{font-size:13.5px;color:var(--text2);margin-bottom:26px;display:inline-flex;gap:10px;align-items:center;align-self:flex-start;padding:7px 14px;border-radius:99px;border:1px solid var(--line2);background:rgba(255,255,255,.03);letter-spacing:.02em}
+.hero .kick i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:block}
+.hero h1{font-size:clamp(56px,6.6vw,108px);margin:0;max-width:11ch}
+.hero h1 span{background:linear-gradient(100deg,#FFD889,var(--gold) 55%,#E09A1E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;margin-top:44px;align-items:end;border-top:1px solid var(--line2);padding-top:26px}
+.hero p{margin:0;font-size:18px;line-height:1.65;color:var(--text2);max-width:46ch;font-weight:300}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.who div{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+.who b{display:block;font-size:14.5px;font-weight:500}
+.who span{font-size:12.5px;color:var(--text3)}
+
+/* ===== section heads ===== */
+.sh{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);grid-template-areas:"n n" "h p";row-gap:18px;column-gap:56px;align-items:end;padding:150px 0 48px}
+.sh .n{grid-area:n;font-size:12.5px;color:var(--cyan);font-weight:500;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.sh .n::after{content:"";height:1px;width:80px;background:linear-gradient(90deg,var(--line3),transparent)}
+.sh h2{grid-area:h;font-size:clamp(40px,3.9vw,66px);margin:0}
+.sh p{grid-area:p;margin:0;color:var(--text2);font-size:16px;line-height:1.7;max-width:44ch;font-weight:300}
+
+/* ===== research ===== */
+.res{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:28px;align-items:start}
+.pillars{display:grid;gap:14px}
+.pl{padding:26px;border-radius:22px}
+.pl h3{margin:0;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.pl p{margin:8px 0 20px;color:var(--text2);font-size:14.5px;line-height:1.65;font-weight:300}
+.pl .m{display:flex;gap:0;border-top:1px solid var(--line);padding-top:16px}
+.pl .m div{flex:1}
+.pl .m div+div{padding-left:18px;border-left:1px solid var(--line)}
+.pl .m b{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em;color:#fff;line-height:1.2}
+.pl .m span{font-size:12.5px;color:var(--text3)}
+
+/* screen frame (live preview of our designs) */
+.screen{position:relative;border-radius:18px;overflow:hidden;background:rgba(8,16,34,.7);border:1px solid var(--line2);box-shadow:var(--sh);transition:border-color .4s,box-shadow .4s}
+.screen .bar{height:32px;display:flex;align-items:center;gap:6px;padding:0 14px;background:rgba(20,34,64,.75);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.screen .bar i{width:8px;height:8px;border-radius:50%;background:rgba(160,190,240,.28)}
+.screen .bar span{margin-left:10px;font-size:11.5px;color:var(--text3);letter-spacing:.02em}
+.screen .vp{position:relative;overflow:hidden;aspect-ratio:16/10}
+.screen iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+
+/* ===== work ===== */
+.feat{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;align-items:end;margin-bottom:28px}
+.wk .meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:18px}
+.wk h3{margin:0;font-size:21px;font-weight:600;letter-spacing:-.01em}
+.wk .tag{font-size:12.5px;color:var(--text3)}
+.wk p{margin:6px 0 0;color:var(--text2);font-size:14.5px;max-width:52ch;font-weight:300}
+.wgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 28px}
+.wk{scroll-margin-top:120px}
+.wk.active .screen{border-color:rgba(127,216,255,.55);box-shadow:0 0 0 1px rgba(127,216,255,.18),0 0 60px -10px rgba(79,157,255,.45),0 40px 80px -30px rgba(0,0,0,.9)}
+.side-note{padding:28px;border-radius:22px;position:relative;overflow:hidden}
+.side-note::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;background:radial-gradient(closest-side,rgba(251,188,63,.18),transparent)}
+.side-note b{display:block;font-size:46px;font-weight:600;letter-spacing:-.04em;line-height:1;background:linear-gradient(100deg,#FFD889,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.side-note p{color:var(--text2);margin:12px 0 0;font-size:14.5px;font-weight:300}
+
+/* ===== studio range strip ===== */
+.range{display:flex;align-items:stretch;margin-top:8px;border-radius:22px;overflow:hidden}
+.range div{flex:1;padding:24px 10px;text-align:center;border-left:1px solid var(--line)}
+.range div:first-child{border-left:0}
+.range b{display:block;font-size:17px;font-weight:500}
+.range span{font-size:12.5px;color:var(--text3)}
+.scale{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12.5px;color:var(--text3);margin-top:14px}
+.scale::before{content:"";order:1;flex:1;height:1px;background:linear-gradient(90deg,rgba(127,216,255,.5),rgba(251,188,63,.5))}
+.scale span:last-child{order:2;color:var(--text2)}
+
+/* ===== consulting ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.st{padding:28px;border-radius:22px}
+.st .k{font-size:12px;color:var(--cyan);font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.st h3{margin:12px 0 10px;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.st p{margin:0;color:var(--text2);font-size:14.5px;line-height:1.65;font-weight:300}
+.st ul{list-style:none;margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:13.5px;color:var(--text2)}
+.st li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);margin-right:10px;vertical-align:2px}
+
+/* ===== contact ===== */
+.contact{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;padding:150px 0 90px;align-items:end}
+.contact h2{font-size:clamp(40px,4.2vw,72px);margin:0}
+.contact h2 a{display:inline-block;margin-top:14px;font-size:.5em;font-weight:500;letter-spacing:-.01em;color:var(--gold);text-decoration:none;padding:10px 26px;border-radius:99px;border:1px solid rgba(251,188,63,.45);background:var(--gold-t);transition:background .2s}
+.contact h2 a:hover{background:rgba(251,188,63,.18)}
+.cd{display:grid;gap:14px;font-size:14px;color:var(--text2);padding:24px;border-radius:22px;font-weight:300}
+.cd b{display:block;color:var(--text);font-weight:500;font-size:14px;margin-bottom:2px}
+.foot{display:flex;justify-content:space-between;padding:22px 0 30px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text3)}
+.foot nav{display:flex;gap:20px}.foot a{text-decoration:none}
+.foot a:hover{color:var(--gold)}
+
+/* ===== chat panel ===== */
+.ch-h{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.ch-av{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.04);display:grid;place-items:center;border:1px solid var(--line2);flex:none}
+.ch-av img{width:24px;display:block}
+.ch-h b{display:block;font-size:14.5px;font-weight:500}
+.ch-h span{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px}
+.ch-h span i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.ch-h .ib{margin-left:auto;color:var(--text3);width:36px;height:36px;padding:8px;border-radius:50%;border:1px solid var(--line2)}
+.ctx{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--line);font-size:12px;color:var(--text3);background:rgba(255,255,255,.015)}
+.ctx em{font-style:normal;color:var(--text);font-weight:500}
+.ctx .dots{display:flex;gap:4px;margin-left:auto}
+.ctx .dots i{width:14px;height:3px;border-radius:2px;background:var(--line2);transition:background .3s}
+.ctx .dots i.on{background:var(--cyan)}
+.log{flex:1;overflow-y:auto;padding:20px 20px 10px;display:flex;flex-direction:column;gap:16px;scrollbar-width:thin;scrollbar-color:rgba(150,185,255,.2) transparent}
+.m{max-width:92%;font-size:14px;line-height:1.65;animation:in .35s ease both}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.m.ai{align-self:flex-start}
+.m.ai .bub{color:#DCE5F4;font-weight:300}
+.m.ai .bub b{color:#fff;font-weight:500}
+.m.ai .src{font-size:11px;color:var(--text3);margin:0 0 6px;display:flex;align-items:center;gap:6px;letter-spacing:.04em;text-transform:uppercase}
+.m.ai .src i{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.m.me{align-self:flex-end;background:rgba(40,64,110,.45);border:1px solid var(--line3);color:var(--text);border-radius:16px;padding:10px 15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.acts button{font:400 12.5px Poppins,system-ui,sans-serif;color:var(--text);background:rgba(255,255,255,.03);border:1px solid var(--line2);border-radius:99px;padding:6px 13px;cursor:pointer;transition:background .2s,border-color .2s}
+.acts button.go{border-color:rgba(251,188,63,.35);color:var(--gold)}
+.acts button:hover{background:rgba(255,255,255,.08);border-color:var(--line3)}
+.typing{display:inline-flex;gap:5px;padding:8px 0}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:b 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.inp{padding:14px 16px 18px;border-top:1px solid var(--line)}
+.inp form{display:flex;align-items:center;gap:10px}
+.inp input{flex:1;min-width:0;height:46px;padding:0 18px;background:rgba(4,10,24,.55);border:1px solid var(--line2);border-radius:99px;outline:0;color:var(--text);font:14px Poppins,system-ui,sans-serif;transition:border-color .2s}
+.inp input:focus{border-color:var(--line3)}
+.inp input::placeholder{color:var(--text3)}
+.inp button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line3);background:rgba(4,10,24,.55);color:var(--text);display:grid;place-items:center;cursor:pointer;flex:none;transition:background .2s}
+.inp button:hover{background:rgba(255,255,255,.08)}
+.inp .hint{font-size:11px;color:var(--text3);margin-top:10px;text-align:center}
+.flash{animation:flash 1.2s ease}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(127,216,255,0)}30%{box-shadow:0 0 0 6px rgba(127,216,255,.3)}100%{box-shadow:0 0 0 0 rgba(127,216,255,0)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.m{animation:none}.bg .floor{animation:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="floor"></div><div class="noise"></div></div>
+
+<div class="show">
+  <header class="nav gl">
+    <a class="mark" href="#top"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a>
+    <nav><a href="#research" data-nav="research">Research</a><a href="#work" data-nav="work">Work</a><a href="#studio" data-nav="studio">Studio</a><a href="#consulting" data-nav="consulting">Consulting</a><a href="#contact" data-nav="contact">Contact</a></nav>
+    <a class="cta" href="#contact">Start a conversation</a>
+  </header>
+
+  <section class="hero wrap" id="top" data-topic="hero">
+    <div class="halo"></div><img class="chev" src="work/assets/Logo%20Final.svg" alt="">
+    <div class="kick"><i></i>AI research firm · Hyderabad and worldwide</div>
+    <h1 class="x">AI you can <span>check</span> the work of.</h1>
+    <div class="row">
+      <p>We research knowledge retrieval accuracy and reasoning model safety, then design the products that put it in people's hands.</p>
+      <div class="who"><div><b>Academia</b><span>Research partners</span></div><div><b>Think tanks</b><span>Policy & evidence</span></div><div><b>Government</b><span>Public sector AI</span></div></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section id="research" data-topic="research">
+      <div class="sh"><span class="n">01 Research</span><h2 class="x">Answers with receipts.</h2><p>Two problems we work on every day: getting the right source, and knowing when a model shouldn't answer at all.</p></div>
+      <div class="res">
+        <div class="pillars">
+          <div class="pl gl"><h3>Retrieval accuracy</h3><p>Ranking evidence by authority, resolving conflicts between sources and citing every claim.</p><div class="m"><div><b>94%</b><span>answers fully cited</span></div><div><b>0.87</b><span>avg. grounding</span></div></div></div>
+          <div class="pl gl"><h3>Reasoning safety</h3><p>Confidence thresholds, escalation to human experts, and a full trace of how each answer was built.</p><div class="m"><div><b>1.9%</b><span>routed to experts</span></div><div><b>12</b><span>traced stages</span></div></div></div>
+        </div>
+        <div class="screen" data-topic="debugger"><div class="bar"><i></i><i></i><i></i><span>AskERISA · Query debugger</span></div><div class="vp"><iframe src="work/askerisa-debugger.html" title="AskERISA query debugger" loading="lazy" scrolling="no"></iframe></div></div>
+      </div>
+    </section>
+
+    <section id="work" data-topic="work">
+      <div class="sh"><span class="n">02 Selected work</span><h2 class="x">Built, shipped, used.</h2><p>Products from our research and our design studio, Pixel. Stop on any project and the assistant will walk you through it.</p></div>
+      <div class="feat">
+        <article class="wk" id="w-askerisa" data-topic="askerisa">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>askerisa.com/admin</span></div><div class="vp"><iframe src="work/askerisa-overview.html" title="AskERISA overview" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>AskERISA</h3><span class="tag">Legal AI · American Retirement Association</span></div>
+          <p>A retirement-law assistant that answers only from the ERISA corpus, with an admin console for answer quality and expert review.</p>
+        </article>
+        <div class="side-note gl"><b>14,842</b><p>questions answered last week, every one traceable to its sources.</p></div>
+      </div>
+      <div class="wgrid">
+        <article class="wk" id="w-dashboard" data-topic="dashboard">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Training &amp; compliance</span></div><div class="vp"><iframe src="work/training-dashboard.html" title="Training dashboard" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Ashgrove Academy</h3><span class="tag">Banking · Admin dashboard</span></div>
+          <p>Compliance training for 1,284 staff across 42 branches, built around who needs attention today.</p>
+        </article>
+        <article class="wk" id="w-vault" data-topic="vault">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Vendor Vault</span></div><div class="vp"><iframe src="work/vendor-vault.html" title="Vendor Vault" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Vendor Vault</h3><span class="tag">Procurement · AI search</span></div>
+          <p>Ask in plain language, compare vendors on real delivery history, and shortlist in one place.</p>
+        </article>
+        <article class="wk" id="w-iron" data-topic="iron">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>irontemple.app</span></div><div class="vp"><iframe src="work/iron-temple.html" title="Iron Temple launch site" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Iron Temple</h3><span class="tag">Fitness · Mobile app &amp; launch</span></div>
+          <p>An AI-drafted, coach-approved training app for gyms, with live help on the gym floor.</p>
+        </article>
+        <article class="wk" id="w-signal" data-topic="signal">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>signalconf.org</span></div><div class="vp"><iframe src="work/signal-event.html" title="Signal 27 conference" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Signal 27</h3><span class="tag">Education · Conference site</span></div>
+          <p>A poster-loud identity with a programme you can actually plan your days with.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="studio" data-topic="studio">
+      <div class="sh"><span class="n">03 Pixel studio</span><h2 class="x">From audit log to launch page.</h2><p>Pixel is our UI/UX practice. The same team designs the dense admin tools and the pages that sell them.</p></div>
+      <div class="range gl">
+        <div><b>Dashboards</b><span>Compliance, ops</span></div>
+        <div><b>AI interfaces</b><span>Chat, citations, traces</span></div>
+        <div><b>Directories</b><span>Search, compare</span></div>
+        <div><b>Portals</b><span>Learners, members</span></div>
+        <div><b>Launch sites</b><span>Products, events</span></div>
+      </div>
+      <div class="scale"><span>Conservative and data-dense</span><span>Expressive and editorial</span></div>
+      <div class="wgrid" style="margin-top:48px">
+        <article class="wk" id="w-portal" data-topic="portal">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Learner portal</span></div><div class="vp"><iframe src="work/learner-portal.html" title="Learner portal" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Kiln</h3><span class="tag">Learning · Member portal</span></div>
+        </article>
+        <article class="wk" id="w-cert" data-topic="cert">
+          <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Certification</span></div><div class="vp"><iframe src="work/certification.html" title="Certification page" loading="lazy" scrolling="no"></iframe></div></div>
+          <div class="meta"><h3>Skyline</h3><span class="tag">Credentials · Certification page</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="consulting" data-topic="consulting">
+      <div class="sh"><span class="n">04 Consulting</span><h2 class="x">We start with your evidence.</h2><p>Limited engagements with commercial teams. Most of our work is with academia, think tanks and government.</p></div>
+      <div class="steps">
+        <div class="st gl"><span class="k">Weeks 1–3</span><h3>Assess</h3><p>We audit your sources, questions and risk, and measure how often today's answers are right.</p><ul><li>Corpus and authority map</li><li>Accuracy baseline</li></ul></div>
+        <div class="st gl"><span class="k">Weeks 4–12</span><h3>Build</h3><p>Retrieval, guardrails and the interface, designed together so people trust what they see.</p><ul><li>Cited answers and escalation</li><li>Admin and review tools</li></ul></div>
+        <div class="st gl"><span class="k">Ongoing</span><h3>Govern</h3><p>Monitoring, source reviews and red-teaming, with reports your oversight board can read.</p><ul><li>Quality dashboards</li><li>Quarterly safety review</li></ul></div>
+      </div>
+    </section>
+
+    <section id="contact" data-topic="contact">
+      <div class="contact">
+        <h2 class="x">Tell us what needs answering. <a href="mailto:info@devpixel.com">Write to us</a></h2>
+        <div class="cd gl">
+          <div><b>DevPixel Private Limited</b>10th Floor, Kapil Towers, ISB Road, Nanakramguda, Hyderabad 500032, India</div>
+          <div><b>Email</b>info@devpixel.com</div>
+          <div><b>Phone</b>+91 94922 49890</div>
+        </div>
+      </div>
+      <div class="foot"><span>© 2026 DevPixel Private Limited</span><nav><a href="#">Privacy policy</a><a href="#">Client portal</a></nav></div>
+    </section>
+  </div>
+</div>
+
+<aside class="chat gl" aria-label="DevPixel assistant">
+  <div class="ch-h">
+    <div class="ch-av"><img src="work/assets/Logo%20Final.svg" alt=""></div>
+    <div><b>DevPixel assistant</b><span><i></i>Follows along as you read</span></div>
+    <svg class="i ib" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+  </div>
+  <div class="ctx">Now reading <em id="ctxName">Welcome</em><div class="dots" id="dots"></div></div>
+  <div class="log" id="log"></div>
+  <div class="inp">
+    <form id="f"><input id="q" placeholder="Ask about our work, research or services" autocomplete="off"><button aria-label="Send"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></form>
+    <div class="hint">Answers come from DevPixel's own pages and case studies</div>
+  </div>
+</aside>
+
+<script>
+/* scale live previews */
+function fit(){document.querySelectorAll('.screen .vp').forEach(v=>{const f=v.querySelector('iframe');f.style.transform=`scale(${v.clientWidth/1440})`;});}
+addEventListener('resize',fit); fit();
+
+/* what the assistant says at each stop */
+const T={
+ hero:{name:'Welcome',say:`Hi, I'm DevPixel's assistant. I'll follow along as you scroll and point out what's worth a closer look. You can also just ask me something.`,acts:[['What does DevPixel do?','ask'],['Show me your work','go:work'],['I have a project','go:contact']]},
+ research:{name:'Research',say:`This is the core of the company. We study two things: <b>finding the right source</b>, and <b>knowing when a model shouldn't answer</b>. The screen on the right is a real trace from AskERISA.`,acts:[['How is accuracy measured?','ask'],['See AskERISA','go:w-askerisa']]},
+ debugger:{name:'Research · Query debugger',say:`You're looking at one answer, taken apart. It shows how the question was rewritten, which 8 sources were considered, why 6 were discarded, and how long each of the 12 stages took.`,acts:[['Why discard sources?','ask'],['Go to consulting','go:consulting']]},
+ work:{name:'Selected work',say:`These are live previews, not screenshots. Pause on any project and I'll tell you what we did and why.`,acts:[['Which is most like my problem?','ask'],['Skip to the studio','go:studio']]},
+ askerisa:{name:'Work · AskERISA',say:`<b>AskERISA</b> answers retirement-law questions for the American Retirement Association. It only uses the ERISA corpus, cites every claim and sends low-confidence questions to a human expert.`,acts:[['How do escalations work?','ask'],['See the debugger','go:research']]},
+ dashboard:{name:'Work · Ashgrove Academy',say:`A compliance dashboard for a bank. The design question was simple: <b>who needs attention today?</b> So past-due people and deadlines sit above the charts.`,acts:[['More dashboards?','go:studio'],['Talk about a dashboard project','go:contact']]},
+ vault:{name:'Work · Vendor Vault',say:`An AI search tool for procurement. You describe what you need, it shortlists vendors from your own delivery history and explains the safest pick.`,acts:[['Is the AI the same as AskERISA?','ask'],['Next project','go:w-iron']]},
+ iron:{name:'Work · Iron Temple',say:`A gym app where AI drafts the plan and a real coach approves it. The launch site uses the app's own screens, playing live.`,acts:[['Do you build mobile apps?','ask'],['Next project','go:w-signal']]},
+ signal:{name:'Work · Signal 27',say:`A conference site with a loud poster identity and a programme planner that flags clashes between sessions.`,acts:[['See the full design range','go:studio']]},
+ studio:{name:'Pixel studio',say:`Pixel is our design team. The strip shows the range, from data-dense admin tools on the left to expressive marketing pages on the right.`,acts:[['Can Pixel work on its own?','ask'],['How do engagements work?','go:consulting']]},
+ portal:{name:'Studio · Kiln',say:`A signed-in home for learners: what to continue, where they are in a certification, and an AI coach that knows their coursework.`,acts:[['Next','go:w-cert']]},
+ cert:{name:'Studio · Skyline',say:`A certification page that answers the three questions people actually have: am I eligible, what does it take, and can a client verify it?`,acts:[['How do engagements work?','go:consulting']]},
+ consulting:{name:'Consulting',say:`We take a small number of commercial engagements. They follow three phases: assess, build, govern. Most clients start with a three-week assessment.`,acts:[['What does an assessment cost?','ask'],['Start a conversation','go:contact']]},
+ contact:{name:'Contact',say:`Happy to help you get started. Tell me in a sentence what you're working on and I'll pass it to the right person, or email <b>info@devpixel.com</b>.`,acts:[['Draft my message','ask'],['Back to top','go:top']]}
+};
+/* simple routed answers for typed questions */
+const A=[
+ [/what does|who are|about/i,`We're an AI research firm. We work on retrieval accuracy and safe reasoning, mostly with academia, think tanks and government, and our studio Pixel designs the products.`,'research'],
+ [/accura|measure|metric/i,`We measure how often an answer cites the right source, how grounded it is, and how often the system correctly declines. AskERISA runs at 94% citation coverage.`,'research'],
+ [/escalat|human|expert/i,`When confidence drops below a threshold, like 0.85 for compliance officers, the question goes to a human expert instead of getting a guessed answer.`,'w-askerisa'],
+ [/discard|source/i,`Sources get discarded when they're stale, low-authority or superseded. The debugger shows the reason for each one.`,'research'],
+ [/mobile|app/i,`Yes. Iron Temple is a full mobile app, and AskERISA has one too.`,'w-iron'],
+ [/dashboard|admin/i,`Dashboards are a big part of our work. Ashgrove and the AskERISA console are two examples.`,'w-dashboard'],
+ [/design|pixel|ui|ux/i,`Pixel is our UI/UX studio. It works on our own products and on client projects.`,'studio'],
+ [/cost|price|budget|engage/i,`It depends on scope. Most clients start with a three-week assessment, and we'll quote after a first call.`,'consulting'],
+ [/contact|email|call|project|message/i,`The quickest route is info@devpixel.com, or tell me here and I'll pass it on.`,'contact']
+];
+const log=document.getElementById('log'), order=Object.keys(T).filter(k=>['hero','research','work','studio','consulting','contact'].includes(k));
+document.getElementById('dots').innerHTML=order.map(k=>`<i data-d="${k}"></i>`).join('');
+let current=null, timer=null;
+const scrollTo=id=>{const el=document.getElementById(id); if(!el) return; el.scrollIntoView({behavior:'smooth',block:id.startsWith('w-')?'center':'start'}); const s=el.querySelector('.screen'); if(s){s.classList.remove('flash');void s.offsetWidth;s.classList.add('flash');}};
+function aiMsg(html,acts,src){const d=document.createElement('div');d.className='m ai';d.innerHTML=(src?`<div class="src"><i></i>${src}</div>`:'')+`<div class="bub">${html}</div>`+(acts&&acts.length?`<div class="acts">${acts.map(([l,a])=>`<button class="${a.startsWith('go:')?'go':''}" data-a="${a}" data-l="${l}">${a.startsWith('go:')?'→ ':''}${l}</button>`).join('')}</div>`:'');log.appendChild(d);log.scrollTop=log.scrollHeight;}
+function typing(cb,ms=700){const t=document.createElement('div');t.className='m ai';t.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';log.appendChild(t);log.scrollTop=log.scrollHeight;setTimeout(()=>{t.remove();cb();},ms);}
+function say(k){if(k===current) return; current=k; const t=T[k]; document.getElementById('ctxName').textContent=t.name;
+  const top=order.includes(k)?k:(['askerisa','dashboard','vault','iron','signal'].includes(k)?'work':['portal','cert'].includes(k)?'studio':'research');
+  document.querySelectorAll('#dots i').forEach(i=>i.classList.toggle('on',order.indexOf(i.dataset.d)<=order.indexOf(top)));
+  document.querySelectorAll('.nav nav a').forEach(a=>a.classList.toggle('on',a.dataset.nav===top));
+  document.querySelectorAll('.wk').forEach(w=>w.classList.toggle('active',w.dataset.topic===k));
+  clearTimeout(timer); timer=setTimeout(()=>typing(()=>aiMsg(t.say,t.acts)),450);}
+function answer(q){const hit=A.find(([r])=>r.test(q)); typing(()=>{ if(hit){aiMsg(hit[1],[['Take me there','go:'+hit[2]]]);} else aiMsg(`I don't have a page on that yet. Want me to pass your question to the team?`,[['Yes, go to contact','go:contact']]);},900);}
+log.addEventListener('click',e=>{const b=e.target.closest('button[data-a]'); if(!b) return; const a=b.dataset.a; if(a.startsWith('go:')) scrollTo(a.slice(3)); else {userMsg(b.dataset.l); answer(b.dataset.l);}});
+function userMsg(t){const d=document.createElement('div');d.className='m me';d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('q');const v=q.value.trim();if(!v)return;q.value='';userMsg(v);answer(v);});
+
+/* detect where the reader has stopped: the topic element closest to the reading line */
+const items=[...document.querySelectorAll('[data-topic]')];
+let raf=null;
+function check(){raf=null;const line=innerHeight*0.45;let best=null,bd=1e9;
+  items.forEach(el=>{const r=el.getBoundingClientRect(); if(r.bottom<80||r.top>innerHeight) return;
+    const inside=r.top<=line&&r.bottom>=line; const d=inside?(el.matches('.wk,.screen')?0:1):Math.min(Math.abs(r.top-line),Math.abs(r.bottom-line))+2;
+    if(d<bd){bd=d;best=el;}});
+  if(best) say(best.dataset.topic);}
+let stop=null;
+addEventListener('scroll',()=>{clearTimeout(stop); stop=setTimeout(()=>{if(!raf) raf=requestAnimationFrame(check);},380);},{passive:true});
+say('hero');
+</script>
+</body>
+</html>

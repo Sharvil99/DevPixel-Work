@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skyline — Commercial Drone Pilot certification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --soft:#F3F6FA; --ink:#0B1630; --ink2:#4A5671; --ink3:#8792A8; --line:#E1E6EE;
+  --sky:#2B5BE0; --sky-t:#E9EEFB; --mint:#13A57A; --mint-t:#E2F6EF; --sun:#FFB020;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--ink);font-size:15.5px;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;letter-spacing:-.03em}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.page{width:100%;min-width:1280px}
+.wrap{padding:0 80px}
+
+.util{height:38px;background:var(--ink);color:#C4CCDD;font-size:13px;display:flex;align-items:center;gap:22px;padding:0 80px}
+.util .sp{flex:1}
+.util a{color:#fff;text-decoration:none}
+.nav{height:72px;display:flex;align-items:center;gap:34px;padding:0 80px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.brand i{width:32px;height:32px;border-radius:50%;background:var(--ink);position:relative;display:block}
+.brand i::before{content:"";position:absolute;left:7px;right:7px;top:14px;height:4px;border-radius:4px;background:#fff}
+.brand i::after{content:"";position:absolute;left:13px;top:8px;width:6px;height:16px;border-radius:4px;background:var(--sky)}
+.nav a{color:var(--ink2);font-weight:500;text-decoration:none}
+.nav a.on{color:var(--ink);font-weight:700}
+.nav .sp{flex:1}
+.btn{height:46px;padding:0 20px;border-radius:12px;border:0;font:700 15px "Schibsted Grotesk";display:inline-flex;align-items:center;gap:9px}
+.btn.pri{background:var(--sky);color:#fff}
+.btn.ink{background:var(--ink);color:#fff}
+.btn.out{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.sm{height:38px;font-size:14px;padding:0 15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 560px;gap:60px;align-items:center;padding:50px 80px 70px;background:radial-gradient(700px 400px at 85% 30%,var(--sky-t),transparent 70%)}
+.crumb{font-size:13.5px;color:var(--ink3)}
+.crumb b{color:var(--ink2);font-weight:500}
+.lvl{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:600;font-size:14px;color:var(--ink2)}
+.lvl .dots{display:flex;gap:4px}.lvl .dots i{width:22px;height:6px;border-radius:9px;background:var(--line);display:block}.lvl .dots i.on{background:var(--sky)}
+.hero h1{font-size:68px;line-height:1.02;font-weight:800;margin-top:16px}
+.hero .for{font-size:16px;font-weight:600;color:var(--sky);margin-top:16px}
+.hero p{font-size:19px;line-height:1.55;color:var(--ink2);margin:16px 0 28px;max-width:560px}
+.hero .ctas{display:flex;gap:10px}
+.window{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:14px;color:var(--ink2)}
+.window i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-t)}
+
+/* credential */
+.credwrap{perspective:1400px;display:flex;justify-content:center}
+.cred{width:500px;border-radius:26px;padding:26px;color:#fff;position:relative;overflow:hidden;transform:rotateY(-12deg) rotateX(5deg);box-shadow:0 50px 80px -30px rgba(11,22,48,.55);
+  background:linear-gradient(135deg,#0B1630 0%,#15295A 55%,#0B1630 100%)}
+.cred::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(120,220,255,.35) 38%,rgba(255,140,220,.3) 50%,rgba(255,230,120,.28) 60%,transparent 75%);mix-blend-mode:screen}
+.cred::after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;border:40px solid rgba(255,255,255,.05)}
+.cred > *{position:relative;z-index:1}
+.ctop{display:flex;justify-content:space-between;align-items:center}
+.ctop .b{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.02em}
+.ctop .id{font-size:12.5px;font-family:ui-monospace,Menlo,monospace;color:#9FB3E0}
+.cmid{display:flex;gap:18px;margin-top:30px;align-items:center}
+.seal{width:84px;height:84px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(from 30deg,#7BE0FF,#C7A6FF,#FFB4D9,#FFE38A,#7BE0FF);padding:4px}
+.seal div{width:100%;height:100%;border-radius:50%;background:#0F1F45;display:grid;place-items:center}
+.cmid h3{font-size:25px;line-height:1.1;font-weight:700}
+.cmid small{display:block;color:#9FB3E0;font-size:13px;margin-top:6px}
+.ends{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+.ends span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14)}
+.cbot{display:grid;grid-template-columns:1fr 1fr 1fr 64px;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);align-items:end}
+.cbot small{display:block;font-size:11px;color:#9FB3E0}
+.cbot b{font-size:15px}
+.qr{width:64px;height:64px;border-radius:8px;background:#fff;padding:6px;display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
+.qr i{background:#0B1630;border-radius:1px}
+.qr i.o{background:transparent}
+.verif{position:absolute;right:40px;top:-16px;z-index:3;background:var(--mint);color:#fff;font-size:13px;font-weight:700;padding:7px 12px;border-radius:99px;display:flex;gap:6px;align-items:center;box-shadow:0 10px 20px -8px rgba(19,165,122,.6)}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin:0 80px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.facts div{padding:22px 24px 24px 0}
+.facts div+div{padding-left:24px;border-left:1px solid var(--line)}
+.facts small{font-size:13px;color:var(--ink3);font-weight:600}
+.facts b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.facts span{font-size:14px;color:var(--ink2)}
+.facts s{color:var(--ink3);font-size:16px;font-weight:500;margin-left:6px}
+
+/* steps */
+.sec{padding:90px 80px 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:34px}
+.sh h2{font-size:44px;font-weight:800;line-height:1.05}
+.sh p{margin:0;max-width:440px;color:var(--ink2);line-height:1.5}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.step{background:var(--soft);border-radius:18px;padding:20px;position:relative}
+.step .n{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;box-shadow:inset 0 0 0 1.5px var(--line)}
+.step.done .n{background:var(--ink);color:#fff;box-shadow:none}
+.step h3{font-size:18px;margin-top:16px;font-weight:700}
+.step p{margin:6px 0 0;font-size:14px;color:var(--ink2);line-height:1.5}
+.step .dur{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:700;color:var(--sky);background:var(--sky-t);padding:4px 9px;border-radius:7px}
+.step::after{content:"";position:absolute;top:36px;right:-14px;width:14px;height:2px;background:var(--line)}
+.step:last-child::after{display:none}
+
+/* two col */
+.two{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:50px;padding:90px 80px 0;align-items:start}
+.domains{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dom{border:1px solid var(--line);border-radius:18px;padding:22px}
+.dom .top{display:flex;justify-content:space-between;align-items:center}
+.dom .ic{width:42px;height:42px;border-radius:12px;background:var(--sky-t);color:var(--sky);display:grid;place-items:center}
+.dom .w{font-size:28px;font-weight:800;letter-spacing:-.03em}
+.dom .w small{font-size:14px;color:var(--ink3);font-weight:600}
+.dom h3{font-size:19px;margin-top:16px}
+.dom p{margin:6px 0 14px;font-size:14px;color:var(--ink2);line-height:1.5}
+.wbar{height:6px;border-radius:9px;background:var(--soft)}.wbar span{display:block;height:100%;border-radius:inherit;background:var(--sky)}
+.dom .ev{font-size:13px;color:var(--ink2);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.dom .ev b{color:var(--ink)}
+
+.apply{border-radius:22px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 60px -30px rgba(11,22,48,.25);padding:24px;position:sticky;top:20px}
+.apply h3{font-size:22px}
+.tog{display:flex;background:var(--soft);border-radius:10px;padding:4px;margin:16px 0}
+.tog span{flex:1;text-align:center;padding:8px 0;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink2)}
+.tog span.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(11,22,48,.12)}
+.price{display:flex;align-items:baseline;gap:8px}
+.price b{font-size:44px;font-weight:800;letter-spacing:-.04em}
+.price s{color:var(--ink3)}
+.price em{font-style:normal;font-size:13px;font-weight:700;color:var(--mint);background:var(--mint-t);padding:3px 8px;border-radius:7px}
+.apply .meta{font-size:14px;color:var(--ink2);margin-top:4px}
+.elig{margin:20px 0;border-top:1px solid var(--line)}
+.elig h4{margin:16px 0 10px;font-size:14px}
+.ei{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:14px;line-height:1.4}
+.ei .c{width:22px;height:22px;border-radius:7px;flex:none;display:grid;place-items:center;border:1.5px solid var(--line)}
+.ei .c.on{background:var(--mint);border-color:var(--mint);color:#fff}
+.ei small{display:block;color:var(--ink3);font-size:12.5px}
+.okmsg{display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:var(--mint-t);color:#0B6B4F;font-size:14px;font-weight:600;margin-bottom:16px}
+.apply .btn{width:100%;justify-content:center}
+.apply .fine{text-align:center;font-size:13px;color:var(--ink3);margin-top:12px}
+
+/* ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.rung{padding:26px;position:relative}
+.rung+.rung{border-left:1px solid var(--line)}
+.rung.here{background:var(--ink);color:#fff}
+.rung .lv{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink3)}
+.rung.here .lv{color:#9FB3E0}
+.rung .lv i{display:flex;gap:3px}.rung .lv i b{width:16px;height:5px;border-radius:9px;background:var(--line);display:block}.rung .lv i b.on{background:var(--sky)}
+.rung h3{font-size:22px;margin-top:14px}
+.rung p{margin:8px 0 16px;font-size:14.5px;color:var(--ink2);line-height:1.5}
+.rung.here p{color:#C4CCDD}
+.rung .m{font-size:14px;font-weight:600}
+.here-tag{position:absolute;top:22px;right:22px;background:var(--sun);color:var(--ink);font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px}
+
+/* verify */
+.verify{margin:90px 80px 60px;border-radius:26px;background:var(--soft);padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.verify h2{font-size:38px;font-weight:800;line-height:1.05}
+.verify p{color:var(--ink2);line-height:1.55;margin:12px 0 0}
+.vin{display:flex;gap:8px}
+.vin div{flex:1;height:52px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line);display:flex;align-items:center;padding:0 16px;font-family:ui-monospace,Menlo,monospace;font-size:15px}
+.vres{margin-top:12px;background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 0 0 1px var(--line)}
+.vres .av{width:42px;height:42px;border-radius:50%;background:#F4DCC8;display:grid;place-items:center;font-weight:800}
+.vres b{display:block}.vres span{font-size:13px;color:var(--ink3)}
+.vres .ok{margin-left:auto;font-size:13px;font-weight:700;color:#0B6B4F;background:var(--mint-t);padding:6px 10px;border-radius:99px;display:flex;gap:6px;align-items:center}
+
+/* ---- merged from Keystride: notes, team pricing, stories, FAQ, CTA, footer ---- */
+.assure{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.assure div{border:1px dashed var(--line);border-radius:14px;padding:14px 18px;font-size:14.5px;color:var(--ink2);line-height:1.5}
+.assure b{color:var(--ink)}
+.team{display:grid;grid-template-columns:400px minmax(0,1fr);gap:40px;align-items:start}
+.pcard{background:var(--ink);color:#fff;border-radius:22px;padding:28px;position:relative;overflow:hidden}
+.pcard::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:34px solid rgba(255,255,255,.05)}
+.pcard small{font-size:13px;font-weight:600;color:#9FB3E0}
+.pcard .big{font-size:56px;font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px}
+.pcard .nm{font-size:14px;color:#C4CCDD;margin-top:8px}
+.pcard .nm s{color:#8792A8}
+.pcard .save{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:var(--ink);background:var(--sun);padding:5px 10px;border-radius:8px}
+.pcard ul{list-style:none;padding:18px 0 0;margin:20px 0 22px;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:10px;font-size:14.5px}
+.pcard li{display:flex;gap:10px}.pcard li svg{color:#7BE0FF}
+.pcard .acts{display:flex;gap:10px}
+.pcard .btn.out{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+.pcard .when{font-size:13px;color:#9FB3E0;margin-top:14px}
+.tt h3{font-size:26px;font-weight:800}
+.tt p{color:var(--ink2);margin:8px 0 18px;line-height:1.55}
+.ttab{width:100%;border-collapse:collapse}
+.ttab th{font-size:12.5px;font-weight:700;color:var(--ink3);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
+.ttab th:nth-child(2),.ttab td:nth-child(2){text-align:right}.ttab th:last-child,.ttab td:last-child{text-align:right}
+.ttab td{padding:14px 12px;border-bottom:1px solid var(--line);font-size:15px}
+.ttab td:nth-child(2){font-weight:800;font-size:18px;letter-spacing:-.02em}
+.ttab tr.hl td{background:var(--sky-t)}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;color:#0B6B4F;background:var(--mint-t);padding:3px 9px;border-radius:7px}
+.tt .fine{font-size:13.5px;color:var(--ink3);margin-top:14px}
+.tt .row{display:flex;gap:14px;align-items:center;margin-top:20px}
+.tt .lnk{font-weight:700;color:var(--sky);text-decoration:none;border-bottom:2px solid var(--sky-t)}
+.stories{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px}
+.st{border-radius:22px;padding:26px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column}
+.st.feat{background:var(--ink);color:#fff;border:0}
+.st .out{align-self:flex-start;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:99px;background:var(--sky-t);color:var(--sky)}
+.st.feat .out{background:var(--sun);color:var(--ink)}
+.st q{display:block;quotes:none;font-size:17px;line-height:1.5;margin:18px 0 22px;color:var(--ink2)}
+.st.feat q{font-size:22px;line-height:1.4;color:#fff;font-weight:500;letter-spacing:-.01em}
+.st .by{margin-top:auto;display:flex;gap:12px;align-items:center;padding-top:16px;border-top:1px solid var(--line)}
+.st.feat .by{border-color:rgba(255,255,255,.14)}
+.st .by .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.st .by b{display:block;font-size:14.5px}.st .by span{font-size:13px;color:var(--ink3)}
+.st.feat .by span{color:#9FB3E0}
+.faq{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:50px;align-items:start}
+.q{border-top:1px solid var(--line);padding:18px 0}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q .h{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:18px;font-weight:700}
+.q .pm{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink2)}
+.q.open .pm{background:var(--ink);color:#fff;box-shadow:none}
+.q p{margin:10px 50px 0 0;color:var(--ink2);line-height:1.6}
+.helpc{background:var(--soft);border-radius:22px;padding:26px}
+.helpc h3{font-size:22px;font-weight:800}
+.helpc p{color:var(--ink2);line-height:1.55;margin:8px 0 18px}
+.adv{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:16px}
+.adv .av{width:42px;height:42px;border-radius:50%;background:#D9E6FB;display:grid;place-items:center;font-weight:800}
+.adv b{display:block}.adv span{font-size:13px;color:var(--mint);font-weight:600}
+.cta{margin:0 80px;border-radius:28px;background:linear-gradient(120deg,var(--ink) 0%,#16306B 100%);color:#fff;padding:54px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(120,220,255,.14) 55%,rgba(255,140,220,.10) 65%,transparent 80%)}
+.cta > *{position:relative}
+.cta h2{font-size:40px;font-weight:800;line-height:1.05;max-width:620px}
+.cta p{color:#C4CCDD;margin:10px 0 0}
+.cta .acts{display:flex;gap:10px;flex:none}
+.cta .btn.out{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.ft{background:var(--ink);color:#C4CCDD;margin-top:90px;padding:64px 80px 0}
+.ft .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.ft .brand{color:#fff}
+.ft .brand i{background:#fff}.ft .brand i::before{background:var(--ink)}
+.ft p{font-size:14px;line-height:1.55;margin:14px 0 0;max-width:300px}
+.ft h5{margin:0 0 14px;font-size:12.5px;font-weight:700;color:#8792A8;letter-spacing:.08em}
+.ft a{display:block;color:#C4CCDD;text-decoration:none;font-size:14.5px;padding:5px 0}
+.ft .nl{display:flex;gap:8px;margin-top:18px;max-width:320px}
+.ft .nl div{flex:1;height:42px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;padding:0 12px;font-size:13.5px;color:#8792A8}
+.ft .bot{display:flex;justify-content:space-between;margin-top:54px;padding:20px 0 26px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8792A8}
+.ft .bot nav{display:flex;gap:22px}
+.ft .bot a{display:inline;font-size:13px;color:#8792A8;padding:0}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="util"><span>Skyline Aviation Institute · Training commercial pilots since 2014</span><span class="sp"></span><a href="#">Verify a pilot</a><a href="#">For employers</a><a href="#">Sign in</a></div>
+  <nav class="nav">
+    <div class="brand"><i></i>Skyline</div>
+    <a class="on" href="#">Certifications</a><a href="#">Training</a><a href="#">Find a pilot</a><a href="#">Regulations</a><a href="#">Events</a>
+    <span class="sp"></span>
+    <button class="btn ink sm">Start application</button>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="crumb">Certifications / Commercial / <b>Commercial Drone Pilot</b></div>
+      <div class="lvl"><span class="dots"><i class="on"></i><i class="on"></i><i></i></span>Level 2 of 3 · Professional</div>
+      <h1>Commercial Drone Pilot certification</h1>
+      <div class="for">For pilots flying inspection, survey and media jobs for paying clients</div>
+      <p>Prove you can plan a mission, fly it safely in controlled airspace and hand over data a client can use. Earn a credential anyone can verify in seconds.</p>
+      <div class="ctas"><button class="btn pri">Start application — $690</button><button class="btn out">Compare levels</button></div>
+      <div class="window"><i></i><span>Next exam window opens <b>March 8, 2027</b>. Applications close February 19.</span></div>
+    </div>
+    <div class="credwrap" style="position:relative"><span class="verif"><svg class="i" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Publicly verifiable</span>
+      <div class="cred">
+        <div class="ctop"><span class="b"><svg class="i" viewBox="0 0 24 24"><path d="M3 12h18M12 4v16"/></svg>SKYLINE</span><span class="id">SKY-CDP-27-04318</span></div>
+        <div class="cmid"><div class="seal"><div><svg class="i" style="width:34px;height:34px;color:#7BE0FF" viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/></svg></div></div>
+          <div><h3>Commercial Drone Pilot</h3><small>Level 2 · Professional · All airspace classes</small></div></div>
+        <div class="ends"><span>Night operations</span><span>Thermal inspection</span><span>BVLOS ready</span><span>Mapping</span></div>
+        <div class="cbot">
+          <div><small>Holder</small><b>Renata Okafor</b></div>
+          <div><small>Issued</small><b>Apr 2027</b></div>
+          <div><small>Valid until</small><b>Apr 2030</b></div>
+          <div class="qr"><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <div><small>Format</small><b>Exam + flight test</b><span>Online exam, then a supervised mission</span></div>
+    <div><small>Time to complete</small><b>~10 weeks</b><span>Self-paced prep, one test day</span></div>
+    <div><small>Cost</small><b>$690<s>$890</s></b><span>Member price · members save $200</span></div>
+    <div><small>Certified pilots</small><b>8,420</b><span>Flying in 46 states and 9 provinces</span></div>
+  </div>
+
+  <section class="sec">
+    <div class="sh"><h2>How you'll earn it</h2><p>Most pilots finish in about ten weeks. You can pause between steps without losing progress.</p></div>
+    <div class="steps">
+      <div class="step done"><div class="n">1</div><h3>Check eligibility</h3><p>Confirm your hours and Level 1 credential. Takes two minutes.</p><span class="dur">2 min</span></div>
+      <div class="step"><div class="n">2</div><h3>Apply and pay</h3><p>Upload your flight log and pick an exam window.</p><span class="dur">1 day</span></div>
+      <div class="step"><div class="n">3</div><h3>Prep course</h3><p>Airspace, weather, client data and safety cases, at your pace.</p><span class="dur">~8 weeks</span></div>
+      <div class="step"><div class="n">4</div><h3>Exam and flight test</h3><p>90-minute online exam, then a mission with an examiner.</p><span class="dur">1 test day</span></div>
+      <div class="step"><div class="n">5</div><h3>Get your credential</h3><p>A digital credential and a public profile clients can check.</p><span class="dur">Within 5 days</span></div>
+    </div>
+    <div class="assure"><div><b>Not sure you're ready?</b> Take the free 20-question readiness check. Pilots who score 65% or higher pass the exam 88% of the time.</div><div><b>Didn't pass first time?</b> One exam retake is included, and you can re-fly the flight test once within 60 days.</div></div>
+  </section>
+
+  <section class="two">
+    <div>
+      <div class="sh" style="margin-bottom:24px"><h2>What you'll prove</h2></div>
+      <div class="domains">
+        <div class="dom"><div class="top"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg></span><span class="w">30<small>%</small></span></div><h3>Mission planning</h3><p>Airspace checks, permissions, weather calls and a written flight plan.</p><div class="wbar"><span style="width:30%"></span></div><div class="ev"><b>Evidence:</b> one complete mission plan</div></div>
+        <div class="dom"><div class="top"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="w">25<small>%</small></span></div><h3>Safe operations</h3><p>Pre-flight checks, emergency procedures and crowd separation.</p><div class="wbar"><span style="width:25%"></span></div><div class="ev"><b>Evidence:</b> live flight test with examiner</div></div>
+        <div class="dom"><div class="top"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><span class="w">25<small>%</small></span></div><h3>Data capture</h3><p>Overlap, ground control and image quality for survey or inspection.</p><div class="wbar"><span style="width:25%"></span></div><div class="ev"><b>Evidence:</b> a processed map or inspection set</div></div>
+        <div class="dom"><div class="top"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span class="w">20<small>%</small></span></div><h3>Client reporting</h3><p>A clear report a site manager, insurer or engineer can act on.</p><div class="wbar"><span style="width:20%"></span></div><div class="ev"><b>Evidence:</b> a client-ready report</div></div>
+      </div>
+
+      <div class="sh" style="margin:70px 0 24px"><h2>Where it fits</h2></div>
+      <div class="ladder">
+        <div class="rung"><div class="lv"><i><b class="on"></b><b></b><b></b></i>Level 1</div><h3>Remote Pilot Foundations</h3><p>Rules, basic flight skills and recreational-to-commercial basics.</p><div class="m">$290 · ~4 weeks</div></div>
+        <div class="rung here"><span class="here-tag">You're here</span><div class="lv"><i><b class="on"></b><b class="on"></b><b></b></i>Level 2</div><h3>Commercial Drone Pilot</h3><p>Paid missions in controlled airspace with client-ready data.</p><div class="m">$690 · ~10 weeks</div></div>
+        <div class="rung"><div class="lv"><i><b class="on"></b><b class="on"></b><b class="on"></b></i>Level 3</div><h3>Chief Pilot</h3><p>Run a drone program: crews, safety cases and BVLOS approvals.</p><div class="m">$1,240 · ~5 months</div></div>
+      </div>
+    </div>
+
+    <aside class="apply">
+      <h3>Apply for the March window</h3>
+      <div class="tog"><span class="on">Member</span><span>Non-member</span></div>
+      <div class="price"><b>$690</b><s>$890</s><em>Save $200</em></div>
+      <div class="meta">Includes prep course, exam, flight test and credential.</div>
+      <div class="elig">
+        <h4>Quick eligibility check</h4>
+        <div class="ei"><span class="c on"><svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div>I hold a Level 1 credential or equivalent license<small>Part 107 counts</small></div></div>
+        <div class="ei"><span class="c on"><svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div>I've logged 25+ flight hours<small>Self-reported, checked at review</small></div></div>
+        <div class="ei"><span class="c on"><svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div>I can reach a test site for one day</div></div>
+      </div>
+      <div class="okmsg"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>You meet the requirements</div>
+      <button class="btn pri">Start application</button>
+      <div class="fine">412 of 600 seats left · Pay in 3 installments</div>
+    </aside>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>Fees &amp; team pricing</h2><p>Members save $200. Operators certifying several pilots pay less per person at every tier.</p></div>
+    <div class="team">
+      <div class="pcard"><small>Member price</small><div class="big">$690</div><div class="nm">Non-member price <s>$890</s></div><span class="save">You save $200</span>
+        <ul><li><svg class="i" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Prep course, practice exam and one retake</li><li><svg class="i" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Flight test with a senior examiner</li><li><svg class="i" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Public profile and digital credential</li></ul>
+        <div class="acts"><button class="btn pri sm">Apply now</button><button class="btn out sm">Join &amp; save</button></div>
+        <div class="when">Spring window opens <b style="color:#fff">March 8, 2027</b> · apply by Feb 19</div></div>
+      <div class="tt"><h3>Certify your whole crew</h3><p>One shared standard across your operation, with a dedicated coordinator and a progress dashboard for your chief pilot.</p>
+        <table class="ttab"><thead><tr><th>Team size</th><th>Per pilot</th><th>Savings</th></tr></thead><tbody>
+          <tr><td>Individual (list price)</td><td>$890</td><td><span style="color:var(--ink3)">—</span></td></tr>
+          <tr><td>3–9 pilots</td><td>$800</td><td><span class="tag">Save 10%</span></td></tr>
+          <tr class="hl"><td>10–24 pilots</td><td>$712</td><td><span class="tag">Save 20%</span></td></tr>
+          <tr><td>25+ pilots</td><td>$623</td><td><span class="tag">Save 30%</span></td></tr>
+        </tbody></table>
+        <div class="fine">Per pilot, off the $890 list price. Workforce grants in 14 states cover part of the fee.</div>
+        <div class="row"><button class="btn ink sm">Request a team quote</button><a class="lnk" href="#">Talk to our team</a></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sh"><h2>From certified pilots</h2><p>Holders report an average 18% rate increase within a year, and 74% say it won them at least one new client.</p></div>
+    <div class="stories">
+      <div class="st feat"><span class="out">Won a statewide bridge inspection contract</span><q>"The flight test was harder than any exam I've taken, and that's the point. The state asked for Skyline-certified pilots in the tender. Three of us had it. We won."</q><div class="by"><div class="av" style="background:var(--sun);color:var(--ink)">MV</div><div><b>Marisol Vance</b><span>Chief Pilot, Northgate Aerial · Denver</span></div></div></div>
+      <div class="st"><span class="out">40% faster site surveys</span><q>"The data capture module changed how I plan missions. Clients get usable maps on the first flight now."</q><div class="by"><div class="av" style="background:#E3F5EC;color:#0B6B4F">DT</div><div><b>Daniel Thurgood</b><span>Survey lead, Larkfield Civil</span></div></div></div>
+      <div class="st"><span class="out">Certified a 14-pilot team</span><q>"We put the whole crew through together. Reports now read the same no matter who flew the job."</q><div class="by"><div class="av" style="background:var(--ink);color:#fff">PS</div><div><b>Priya Sethuraman</b><span>Operations, Calloway Drone Services</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="faq">
+      <div><div class="sh" style="margin-bottom:18px"><h2>Questions, answered</h2></div>
+        <div class="q open"><div class="h">Which drone can I use for the flight test?<span class="pm">−</span></div><p>Any registered drone under 25 kg with a return-to-home function. If you don't have one, you can rent a test aircraft at the site for $60.</p></div>
+        <div class="q"><div class="h">Do I need to be a member?<span class="pm">+</span></div></div>
+        <div class="q"><div class="h">What software can I use for mapping and reports?<span class="pm">+</span></div></div>
+        <div class="q"><div class="h">Is the credential accepted by insurers?<span class="pm">+</span></div></div>
+        <div class="q"><div class="h">How do I renew after three years?<span class="pm">+</span></div></div>
+      </div>
+      <aside class="helpc"><h3>Still deciding?</h3><p>Book 15 minutes with an advisor. We'll check your hours and tell you which level fits.</p>
+        <div class="adv"><div class="av">JR</div><div><b>Jordan Reyes</b><span>● Available today</span></div></div>
+        <button class="btn ink" style="width:100%;justify-content:center">Book a call</button></aside>
+    </div>
+  </section>
+
+  <section class="verify">
+    <div><h2>Every pilot, verifiable in seconds</h2><p>Clients and insurers can check any Skyline credential: who holds it, what it covers and whether it's current.</p></div>
+    <div>
+      <div class="vin"><div>SKY-CDP-27-04318</div><button class="btn ink">Verify</button></div>
+      <div class="vres"><div class="av">RO</div><div><b>Renata Okafor</b><span>Commercial Drone Pilot · valid until Apr 2030</span></div><span class="ok"><svg class="i" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Current</span></div>
+    </div>
+  </section>
+
+  <section class="cta"><div><h2>Earn your Commercial Drone Pilot credential</h2><p>Apply for the spring window, or bring your whole crew through together.</p></div><div class="acts"><button class="btn pri">Apply — $690 for members</button><button class="btn out">Request a team quote</button></div></section>
+
+  <footer class="ft">
+    <div class="cols">
+      <div><div class="brand"><i></i>Skyline</div><p>Credentials for the pilots who inspect, map and film the world from above.</p><div class="nl"><div>you@company.com</div><button class="btn pri sm">Subscribe</button></div></div>
+      <div><h5>CERTIFICATIONS</h5><a href="#">Remote Pilot Foundations</a><a href="#">Commercial Drone Pilot</a><a href="#">Chief Pilot</a><a href="#">Compare levels</a></div>
+      <div><h5>PILOTS</h5><a href="#">Training catalog</a><a href="#">Exam windows</a><a href="#">Renewals</a><a href="#">Find a pilot</a></div>
+      <div><h5>INSTITUTE</h5><a href="#">Membership</a><a href="#">Team accounts</a><a href="#">Verify a credential</a><a href="#">Support</a></div>
+    </div>
+    <div class="bot"><span>© 2026 Skyline Aviation Institute</span><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a><a href="#">Candidate handbook</a></nav></div>
+  </footer>
+
+</div>
+</body>
+</html>

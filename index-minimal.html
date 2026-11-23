@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevPixel — minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="site/dp.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<div class="show">
+  <header class="top"><div class="wrap"><a class="mark" href="#top"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a></div></header>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top" data-topic="hero">
+      <h1 class="x"><span class="w">AI you can check</span> <span class="grad">the work of.</span></h1>
+      <p class="lede">We research knowledge retrieval accuracy and reasoning model safety, then design the products that put it in people's hands.</p>
+      <div class="ctas"><a class="btn btn-g" href="#work">See our work</a><button class="btn btn-o" data-open-chat>Ask Pixie</button></div>
+      <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Our work">
+        <div class="track" id="track"><div class="sizer"><div class="bar"></div><div class="vp"></div></div></div>
+        <div class="car-ctl"><div class="car-cap" id="carCap" aria-live="polite"></div></div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="sec" id="research" data-topic="research">
+      <div class="eyebrow rv">Research</div>
+      <h2 class="x h2 rv">Answers with receipts. <span>Cited, traced, or handed to a human.</span></h2>
+      <div class="stats rv">
+        <div><em>Retrieval</em><b>94%</b><span>answers fully cited</span></div>
+        <div><em>Retrieval</em><b>0.87</b><span>average grounding</span></div>
+        <div><em>Safety</em><b>1.9%</b><span>routed to experts</span></div>
+        <div><em>Safety</em><b>12</b><span>traced stages per answer</span></div>
+      </div>
+      <div class="res-vis rv"><div class="screen" data-topic="debugger"><div class="bar"><i></i><i></i><i></i><span>AskERISA · Query debugger</span></div><div class="vp"><iframe src="work/askerisa-debugger.html" title="AskERISA query debugger" loading="lazy" scrolling="no"></iframe></div></div></div>
+    </section>
+
+    <!-- WORK: one row per kind of project -->
+    <section class="sec" id="work" data-topic="work">
+      <div class="eyebrow rv">Selected work</div>
+      <h2 class="x h2 rv">Built, shipped, used. <span>Live previews, grouped by kind.</span></h2>
+
+      <div class="row rv" id="r-ai" data-topic="r-ai">
+        <div class="row-h"><b>AI products</b><span>02</span></div>
+        <div class="cgrid c2">
+          <article class="card wk" data-p="askerisa">
+            <div class="wk-h"><div><h3 class="x">AskERISA</h3><span class="tag">Legal AI · American Retirement Association</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>askerisa.com/admin</span></div><div class="vp"><iframe src="work/askerisa-overview.html" title="AskERISA overview" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+          <article class="card wk" data-p="vault">
+            <div class="wk-h"><div><h3 class="x">Vendor Vault</h3><span class="tag">Procurement · AI search</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Vendor Vault</span></div><div class="vp"><iframe src="work/vendor-vault.html" title="Vendor Vault" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="row rv" id="r-platforms" data-topic="r-platforms">
+        <div class="row-h"><b>Platforms</b><span>02</span></div>
+        <div class="cgrid c2">
+          <article class="card wk" data-p="dashboard">
+            <div class="wk-h"><div><h3 class="x">Ashgrove Academy</h3><span class="tag">Banking · Admin dashboard</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Training</span></div><div class="vp"><iframe src="work/training-dashboard.html" title="Training dashboard" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+          <article class="card wk" data-p="portal">
+            <div class="wk-h"><div><h3 class="x">Kiln</h3><span class="tag">Learning · Member portal</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Learner portal</span></div><div class="vp"><iframe src="work/learner-portal.html" title="Learner portal" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="row rv" id="r-web" data-topic="r-web">
+        <div class="row-h"><b>Websites</b><span>03</span></div>
+        <div class="cgrid c2">
+          <article class="card wk" data-p="cert">
+            <div class="wk-h"><div><h3 class="x">Skyline</h3><span class="tag">Credentials · Certification</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>Certification</span></div><div class="vp"><iframe src="work/certification.html" title="Certification page" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+          <article class="card wk" data-p="iron">
+            <div class="wk-h"><div><h3 class="x">Iron Temple</h3><span class="tag">Fitness · Mobile app &amp; launch</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>irontemple.app</span></div><div class="vp"><iframe src="work/iron-temple.html" title="Iron Temple launch site" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+          <article class="card wk" data-p="signal">
+            <div class="wk-h"><div><h3 class="x">Signal 27</h3><span class="tag">Education · Conference site</span></div><span class="wk-ic"><i class="ph ph-chat-circle"></i></span></div>
+            <div class="screen"><div class="bar"><i></i><i></i><i></i><span>signalconf.org</span></div><div class="vp"><iframe src="work/signal-event.html" title="Signal 27 conference" loading="lazy" scrolling="no"></iframe></div></div>
+          </article>
+          <button class="card wk-new" type="button" data-pitch>
+            <div class="wk-h"><div><h3 class="x">Your project here</h3><span class="tag">Tell us what you're building</span></div><span class="wk-ic"><i class="ph ph-plus"></i></span></div>
+            <div class="ghost"><div class="bar"><i></i><i></i><i></i><span>your-project</span></div><div class="ghost-b"><span>Start in the chat<i class="ph ph-arrow-right"></i></span></div></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDIO -->
+    <section class="sec" id="studio" data-topic="studio">
+      <div class="eyebrow rv">Pixel studio</div>
+      <h2 class="x h2 rv">From audit log to launch page. <span>Five kinds of product, one design team.</span></h2>
+      <div class="kinds rv">
+        <div><div class="ic"><i class="ph ph-squares-four"></i></div><h5>Dashboards</h5><p>Ashgrove, AskERISA</p></div>
+        <div><div class="ic"><i class="ph ph-chats-circle"></i></div><h5>AI interfaces</h5><p>AskERISA, Vendor Vault</p></div>
+        <div><div class="ic"><i class="ph ph-magnifying-glass"></i></div><h5>Directories</h5><p>Vendor Vault</p></div>
+        <div><div class="ic"><i class="ph ph-user-circle"></i></div><h5>Portals</h5><p>Kiln</p></div>
+        <div><div class="ic"><i class="ph ph-rocket-launch"></i></div><h5>Websites</h5><p>Skyline, Iron Temple, Signal 27</p></div>
+      </div>
+      <div class="scale rv"><span>Conservative and data-dense</span><span>Expressive and editorial</span></div>
+    </section>
+
+    <!-- CONSULTING -->
+    <section class="sec" id="consulting" data-topic="consulting">
+      <div class="eyebrow rv">Consulting</div>
+      <h2 class="x h2 rv">We start with your evidence. <span>Three phases, built around your sources.</span></h2>
+      <div class="specs rv">
+        <div class="spec"><span>Academia</span><b>Research partners</b></div>
+        <div class="spec"><span>Think tanks</span><b>Policy &amp; evidence</b></div>
+        <div class="spec"><span>Government</span><b>Public sector AI</b></div>
+        <div class="spec"><span>Commercial</span><b>Limited engagements</b></div>
+      </div>
+      <div class="steps rv">
+        <div class="card step"><div class="num">1</div><div class="k">Weeks 1–3</div><h4>Assess</h4><ul><li>Corpus and authority map</li><li>Accuracy baseline</li></ul></div>
+        <div class="card step"><div class="num">2</div><div class="k">Weeks 4–12</div><h4>Build</h4><ul><li>Cited answers and escalation</li><li>Admin and review tools</li></ul></div>
+        <div class="card step"><div class="num">3</div><div class="k">Ongoing</div><h4>Govern</h4><ul><li>Quality dashboards</li><li>Quarterly safety review</li></ul></div>
+      </div>
+      <div class="prompts rv">
+        <span class="lbl">Just ask</span>
+        <button class="ask" data-q="private" data-ask="Do you work with private companies?">Do you work with private companies?<i class="ph ph-arrow-right"></i></button>
+        <button class="ask" data-q="audit" data-ask="Can you audit our existing chatbot?">Can you audit our existing chatbot?<i class="ph ph-arrow-right"></i></button>
+        <button class="ask" data-q="owndocs" data-ask="Could this work on our own documents?">Could this work on our own documents?<i class="ph ph-arrow-right"></i></button>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="close" id="contact" data-topic="contact">
+    <div class="wrap">
+      <div class="eyebrow rv">Contact</div>
+      <h2 class="x"><span class="w">Tell us what</span> <span class="grad">needs answering.</span></h2>
+      <p>info@devpixel.com · +91 94922 49890</p>
+      <div class="ctas"><a class="btn btn-g" href="mailto:info@devpixel.com">Write to us</a><button class="btn btn-o" data-open-chat>Ask Pixie</button></div>
+    </div>
+  </section>
+  <footer><div class="wrap">
+    <div class="frow">
+      <div><a class="mark" href="#top"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a></div>
+      <div><b>Office</b>DevPixel Private Limited, 10th Floor, Kapil Towers, ISB Road, Nanakramguda, Hyderabad 500032, India</div>
+      <div><b>Company</b><nav><a href="#">Privacy policy</a><a href="#">Client portal</a></nav></div>
+    </div>
+    <div class="fine"><span>© 2026 DevPixel Private Limited</span><span>info@devpixel.com</span></div>
+  </div></footer>
+</div>
+
+<aside class="chat" aria-label="Pixie, the DevPixel assistant">
+  <div class="ch-h">
+    <img class="ch-logo" src="work/assets/Logo%20Final.svg" alt="">
+    <div class="t"><b>Pixie</b><span><i></i>Reading along with you</span></div>
+    <div class="tools">
+      <button class="ib" id="newChat" data-tip="New chat" aria-label="New chat"><i class="ph ph-note-pencil"></i></button>
+      <button class="ib" id="fullBtn" data-tip="Full screen" aria-label="Full screen"><i class="ph ph-arrows-out-simple"></i></button>
+      <button class="ib" id="minBtn" data-tip="Minimise" aria-label="Minimise chat"><i class="ph ph-sidebar-simple"></i></button>
+    </div>
+  </div>
+
+  <div class="chat-in">
+  <div class="ctx" aria-live="polite">
+    <div class="ctx-top"><span>Now reading</span><span class="step-n" id="step">01 / 06</span><button class="ctx-tg" id="ctxTg" type="button" aria-label="Show details" aria-expanded="true"><i class="ph ph-caret-down"></i></button></div>
+    <div class="prog" id="prog"></div>
+    <div class="body" id="ctxBody"></div>
+  </div>
+
+  <div class="thread" id="thread"></div>
+
+  <div class="sugg" id="sugg"></div>
+
+  <div class="composer">
+    <form class="box" id="f">
+      <textarea id="q" rows="1" placeholder="Ask about our research, work or services…"></textarea>
+      <div class="bar2">
+        <span class="pctx" title="Pixie knows what you're looking at"><i class="ph ph-eye"></i><span id="pctx">Welcome</span></span>
+        <button class="send" id="send" aria-label="Send" disabled><i class="ph-bold ph-arrow-up"></i></button>
+      </div>
+    </form>
+    <div class="foot-note">Answers come from DevPixel's own pages and case studies</div>
+  </div>
+  </div>
+</aside>
+
+<button class="launch" id="launch" aria-label="Open Pixie">
+  <span class="l-bloom" aria-hidden="true"></span>
+  <span class="l-in">
+    <img class="l-logo" src="work/assets/Logo%20Final.svg" alt="">
+    <span class="l-t">Ask Pixie</span>
+  </span>
+  <span class="l-rim" aria-hidden="true"></span>
+</button>
+
+<script src="site/data.js"></script>
+<script src="site/chat.js"></script>
+<script>
+/* Home page: three levels.
+   Section (scroll) -> brief.  Row (scroll) -> what the group shares + its projects.
+   Project (click a card or list item) -> explained here, card highlighted, link to its project page.
+   Follow-ups always sit in the strip above the input. */
+const SECTIONS={
+ hero:{name:'Welcome',say:`I'm Pixie. I'll follow along as you scroll and explain what you're looking at. The designs below are live: swipe through them, or tap one and I'll tell you about it.`,acts:[['What does DevPixel actually do?','q:about'],['Show me the work','go:work'],['I have a project in mind','go:contact']]},
+ research:{name:'Research',say:`The core of the company. Two problems: <b>retrieval accuracy</b> (ranking evidence by authority, resolving conflicts between sources, citing every claim) and <b>reasoning safety</b> (confidence thresholds, escalation to human experts, a full trace of every answer).`,acts:[['How do you measure accuracy?','q:accuracy'],['When does the AI refuse to answer?','q:refuse'],['See it in a product','go:r-ai']]},
+ debugger:{name:'Research · Query debugger',say:`A real trace from AskERISA. One answer, taken apart: how the question was rewritten, which 8 sources were considered, why 6 were discarded, and how long each of the 12 stages took.`,acts:[['Why were 6 sources thrown out?','q:discard'],['Open AskERISA','p:askerisa']]},
+ work:{name:'Selected work',say:`Products from our research and our design studio, Pixel, grouped by kind. Pick a group, or tap any project on the page and I'll walk you through it.`,acts:[['AI products','go:r-ai'],['Platforms','go:r-platforms'],['Websites','go:r-web']]},
+ studio:{name:'Pixel studio',say:`Pixel is our UI/UX practice. Every project above came from the same team, from data-dense dashboards to expressive launch pages.`,acts:[['Can I hire Pixel just for design?','q:pixel'],['How does an engagement work?','go:consulting']]},
+ consulting:{name:'Consulting',say:`Limited engagements with commercial teams; most of our work is with academia, think tanks and government. <b>Assess</b> audits your sources and measures how often today's answers are right. <b>Build</b> designs retrieval, guardrails and interface together. <b>Govern</b> keeps it honest with monitoring and red-teaming your oversight board can read.`,acts:[['What does an assessment cost?','q:cost'],['How long until we see results?','q:timeline'],['Start a conversation','go:contact']]},
+ contact:{name:'Contact',say:`Tell me in a sentence what you're working on and I'll pass it to the right person, or email <b>info@devpixel.com</b>.`,acts:[['Help me write my first message','q:draft'],['Back to top','go:top']]}
+};
+const order=['hero','research','work','studio','consulting','contact'];
+const NAMES=['Welcome','Research','Work','Studio','Consulting','Contact'];
+const parentOf=k=>order.includes(k)?k:(ROWS[k]?'work':'research');
+
+/* views return [card html, follow-ups] */
+const sectionView=k=>{const s=SECTIONS[k]; return [`<h4>${s.name}</h4><p>${s.say}</p>`,s.acts];};
+const rowView=k=>{const r=ROWS[k]; return [`<div class="lvl">Selected work</div><h4>${r.name}</h4><p>${r.say}</p>
+  <div class="plist">${r.items.map((id,n)=>`<button class="pitem" data-a="p:${id}"><span class="n">0${n+1}</span><span><b>${P[id].name}</b><small>${P[id].tag}</small></span>${ARROW}</button>`).join('')}</div>`,r.qs];};
+const projectView=id=>{const p=P[id]; return [`<button class="crumb" data-a="back">${BACK}${ROWS[p.row].name}</button><h4>${p.name}</h4><div class="ptag">${p.tag}</div><p>${p.say}</p>
+  ${p.facts?`<div class="pfacts">${p.facts.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('')}</div>`:''}
+  <a class="openp" href="project.html?p=${id}">Open project page${ARROW}</a>`,p.qs];};
+const show=([h,a])=>render(h,a);
+
+function meta(k,label){const idx=order.indexOf(parentOf(k));
+  $('step').textContent=`${String(idx+1).padStart(2,'0')} / 06`;
+  document.querySelectorAll('#prog button').forEach((b,n)=>b.classList.toggle('on',n<=idx));
+  document.querySelectorAll('.row').forEach(r=>r.classList.toggle('on',r.id===k));
+  $('pctx').textContent=label||(SECTIONS[k]||ROWS[k]).name;}
+function highlight(id){document.querySelectorAll('.wk').forEach(w=>w.classList.toggle('active',w.dataset.p===id));}
+
+let current=null, proj=null;
+function say(k){ if(k===current) return; current=k; proj=null; highlight(null); meta(k); show(ROWS[k]?rowView(k):sectionView(k)); }
+function openProject(id,fromPage){const p=P[id]; setMin(false); setCompact(false); proj=id; current=p.row; meta(p.row,p.name); highlight(id); show(projectView(id));
+  if(!fromPage){const card=document.querySelector(`.wk[data-p="${id}"]`); const r=card.getBoundingClientRect(); if(r.top<60||r.bottom>innerHeight) card.scrollIntoView({behavior:'smooth',block:'center'});}}
+function back(){const r=P[proj].row; proj=null; highlight(null); meta(r); show(rowView(r));}
+const scrollTo=id=>{const el=$(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'});};
+
+window.DP={
+  act(a){ if(a==='back') back(); else if(a.startsWith('p:')) openProject(a.slice(2)); else if(a.startsWith('go:')) scrollTo(a.slice(3)); },
+  here(){ return proj; },
+  rerender(){ show(proj?projectView(proj):ROWS[current]?rowView(current):sectionView(current)); }
+};
+
+$('prog').innerHTML=order.map((k,n)=>`<button data-go="${k==='hero'?'top':k}" data-tip="${NAMES[n]}" aria-label="Go to ${NAMES[n]}"></button>`).join('');
+$('prog').addEventListener('click',e=>{const b=e.target.closest('button'); if(b) scrollTo(b.dataset.go);});
+document.querySelector('.show').addEventListener('click',e=>{const card=e.target.closest('.wk'); if(card) openProject(card.dataset.p,true);});
+/* "Your project here": the assistant asks what they're building */
+document.querySelector('[data-pitch]').addEventListener('click',()=>{setMin(false);
+  const last=thread.lastElementChild; if(!(last&&last.dataset.pitch)){aiMsg(`Tell me in a sentence what you're building: who it's for and what it needs to do. I'll pass it to the right person on the team.`,[['Help me write my first message','q:draft']]); thread.lastElementChild.dataset.pitch='1';}
+  setTimeout(()=>q.focus(),300);});
+
+/* where the reader has stopped: the smallest section, row or debugger crossing the reading line.
+   Cards are never picked by scroll, so side-by-side projects don't compete. */
+const items=[...document.querySelectorAll('[data-topic]')];
+let raf=null;
+function check(){raf=null;const line=innerHeight*0.45;let best=null,bd=1e9;
+  items.forEach(el=>{const r=el.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+    const inside=r.top<=line&&r.bottom>=line;
+    const d=inside?r.height/1e6:Math.min(Math.abs(r.top-line),Math.abs(r.bottom-line))+2;
+    if(d<bd){bd=d;best=el;}});
+  if(best) say(best.dataset.topic);}
+let stop=null;
+addEventListener('scroll',()=>{clearTimeout(stop); stop=setTimeout(()=>{if(!raf) raf=requestAnimationFrame(check);},250);},{passive:true});
+
+/* ===== hero carousel: auto-advances (keeps running on hover), dots/click/swipe/drag/trackpad.
+   Clicking a slide holds it there; dots, swipes, keys or scrolling away start it again. ===== */
+const stage=$('stage'), track=$('track'), N=PORDER.length, DUR=3500;
+track.insertAdjacentHTML('beforeend',PORDER.map((id,i)=>`<div class="slide" data-i="${i}"><div class="screen"><div class="bar"><i></i><i></i><i></i><span>${P[id].screens[0].url}</span></div><div class="vp"><iframe title="${P[id].name}" scrolling="no" tabindex="-1"></iframe></div></div></div>`).join(''));
+$('dots').innerHTML=PORDER.map((id,i)=>`<button data-i="${i}" aria-label="${P[id].name}"></button>`).join('');
+const slides=[...track.querySelectorAll('.slide')], dots=[...$('dots').children];
+let cur=0, timer=null, visible=true, held=false;
+const rel=i=>{let d=(i-cur+N)%N; if(d>N/2) d-=N; return d;};
+function go(i,hold=false){cur=(i+N)%N; held=hold;
+  slides.forEach((el,n)=>{const d=rel(n); el.dataset.pos=Math.abs(d)<=2?d:(d<0?-3:3);
+    if(Math.abs(d)<=2){const f=el.querySelector('iframe'); if(!f.src) f.src=P[PORDER[n]].screens[0].src;}});
+  dots.forEach(b=>{b.classList.remove('on'); b.style.setProperty('--dur',DUR+'ms');});
+  const p=P[PORDER[cur]], cap=$('carCap'); cap.classList.add('swap');
+  setTimeout(()=>{cap.innerHTML=`<b>${p.name}</b><span>${p.tag}</span>`; cap.classList.remove('swap');},180);
+  fit(); restart();}
+function restart(){clearTimeout(timer); const run=visible&&!held&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const d=dots[cur]; d.classList.remove('on'); void d.offsetWidth; d.classList.add('on');
+  stage.classList.toggle('paused',!run); if(run) timer=setTimeout(()=>x0===null?go(cur+1):restart(),DUR);}
+$('dots').addEventListener('click',e=>{const b=e.target.closest('button'); if(b) go(+b.dataset.i);});
+new IntersectionObserver(([e])=>{visible=e.isIntersecting; if(!visible) held=false; restart();},{threshold:.3}).observe(stage);
+document.addEventListener('visibilitychange',()=>{visible=!document.hidden; restart();});
+/* click: side slide moves there, centre slide opens in chat */
+track.addEventListener('click',e=>{if(moved) return; const sl=e.target.closest('.slide'); if(!sl) return; const d=+sl.dataset.pos;
+  if(d===0){held=true; clearTimeout(timer); stage.classList.add('paused'); openProject(PORDER[cur],true);}
+  else if(Math.abs(d)===1) go(cur+d,true);});
+/* horizontal trackpad scroll */
+let wheelLock=0;
+stage.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)) return; e.preventDefault();
+  if(Date.now()<wheelLock||Math.abs(e.deltaX)<12) return; wheelLock=Date.now()+700; go(cur+(e.deltaX>0?1:-1));},{passive:false});
+/* drag / swipe */
+let x0=null, moved=false;
+track.addEventListener('pointerdown',e=>{x0=e.clientX; moved=false;});
+addEventListener('pointermove',e=>{if(x0!==null&&Math.abs(e.clientX-x0)>8) moved=true;});
+addEventListener('pointerup',e=>{if(x0===null) return; const dx=e.clientX-x0; x0=null; if(Math.abs(dx)>50) go(cur+(dx<0?1:-1)); setTimeout(()=>moved=false,0);});
+addEventListener('keydown',e=>{const r=stage.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight||/TEXTAREA|INPUT/.test(document.activeElement.tagName)) return;
+  if(e.key==='ArrowRight') go(cur+1); if(e.key==='ArrowLeft') go(cur-1);});
+go(0);
+say('hero'); fit();
+</script>
+</body>
+</html>

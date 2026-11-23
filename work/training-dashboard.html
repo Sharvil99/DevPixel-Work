@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashgrove Federal Academy — Training & compliance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#16432F; --green2:#1F5A40; --greenl:#2F7A57; --green-bar:#3E8A63; --green-pale:#BFD8C9; --sage:#E6EEE9; --sage2:#F1F5F2;
+  --side:#1E2522; --bg:#EEF0EF; --surface:#FFFFFF; --line:#D5DAD7; --line2:#E7EAE8; --head:#F5F6F5;
+  --ink:#1A1F1D; --ink2:#434B47; --ink3:#69726E;
+  --good:#1D6A43; --goodbg:#E3F1E8; --warn:#7A4E00; --warnbg:#FBF0D8; --amber:#C48A1A; --bad:#A1261B; --badbg:#F9E5E2; --gold:#A8862F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--ink);font-size:13px;line-height:1.4;-webkit-font-smoothing:antialiased}
+svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:"IBM Plex Mono",monospace}
+.app{display:flex;width:100%;min-width:1280px;min-height:100vh;align-items:flex-start}
+
+/* sidebar */
+.side{width:232px;flex:none;background:var(--side);color:#C4CCC8;padding:18px 12px;display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 8px 18px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.brand .m{width:34px;height:34px;border-radius:3px;background:var(--green2);display:grid;place-items:center;color:#E6EEE9}
+.brand b{display:block;font-family:"IBM Plex Serif",serif;font-size:15.5px;color:#fff;letter-spacing:-.01em}
+.brand span{font-size:10.5px;letter-spacing:.14em;color:#8E9994}
+.side a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:3px;color:#C4CCC8;text-decoration:none;font-weight:500}
+.side a.on{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 3px 0 0 #6FB38C}
+.side a .c{margin-left:auto;font-size:11px;color:#8E9994}
+.side a .c.r{background:var(--bad);color:#fff;border-radius:3px;padding:1px 6px;font-weight:600}
+.grp{font-size:10.5px;letter-spacing:.14em;color:#7D8883;padding:16px 10px 6px}
+.sidecard{margin-top:auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:12px;color:#C4CCC8}
+.sidecard b{display:block;color:#fff;font-size:13px}
+.sidecard small{display:block;color:#8E9994;font-size:11.5px;margin-top:2px}
+.sidecard .pb{height:5px;border-radius:2px;background:rgba(255,255,255,.1);margin:10px 0 6px;overflow:hidden}
+.sidecard .pb span{display:block;height:100%;width:93.8%;background:#6FB38C}
+.sidecard .r{display:flex;justify-content:space-between;font-size:11.5px}
+.me{display:flex;align-items:center;gap:10px;padding:12px 8px 0;margin-top:10px;border-top:1px solid rgba(255,255,255,.08)}
+.av{width:30px;height:30px;border-radius:50%;background:#3A4641;color:#E6EEE9;display:grid;place-items:center;font-weight:600;font-size:11px;flex:none}
+.me b{display:block;color:#fff;font-size:12.5px}.me span{font-size:11px;color:#8E9994}
+
+/* top bar */
+.main{flex:1;min-width:0}
+.top{height:54px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 24px}
+.search{width:380px;height:34px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--ink3)}
+.search kbd{margin-left:auto;font:500 11px "IBM Plex Mono";border:1px solid var(--line);border-radius:2px;padding:1px 5px}
+.env{font:500 11px "IBM Plex Mono";color:var(--ink2);border:1px solid var(--line);border-radius:2px;padding:3px 7px}
+.top .sp{flex:1}
+.sess{font-size:12px;color:var(--ink3)}
+.ib{width:34px;height:34px;border:1px solid var(--line);border-radius:3px;display:grid;place-items:center;color:var(--ink2);position:relative}
+.ib i{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--bad)}
+
+.wrap{padding:16px 24px 32px}
+.alert{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:3px;background:var(--warnbg);border:1px solid #EBD6A8;color:#5E3E00}
+.alert b{font-weight:600}
+.alert a{margin-left:auto;font-weight:600;color:#5E3E00;white-space:nowrap}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;padding:16px 0}
+.crumb{font-size:12px;color:var(--ink3)}
+.crumb b{color:var(--ink2);font-weight:500}
+.head h1{margin:4px 0 6px;font-size:23px;font-weight:600;letter-spacing:-.01em}
+.meta{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--ink2)}
+.meta span{display:inline-flex;align-items:center;gap:5px}
+.cyc{font:600 10.5px "IBM Plex Mono";letter-spacing:.06em;background:var(--sage);color:var(--green);padding:3px 7px;border-radius:2px}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{white-space:nowrap;height:34px;padding:0 12px;border-radius:3px;display:inline-flex;align-items:center;gap:7px;font:500 12.5px "IBM Plex Sans";border:1px solid #C3CAC6;background:#fff;color:var(--ink)}
+.btn.pri{background:var(--green);border-color:var(--green);color:#fff}
+.btn.sm{height:28px;font-size:12px}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:3px}
+.kpi{padding:14px 16px;border-left:1px solid var(--line2);min-width:0}
+.kpi:first-child{border-left:0}
+.kpi .l{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.kpi .v{font-size:26px;font-weight:600;letter-spacing:-.02em;margin-top:8px;display:flex;align-items:baseline;gap:5px}
+.kpi .v small{font-size:12.5px;font-weight:500;color:var(--ink3)}
+.kpi .d{font-size:11.5px;color:var(--ink3);margin-top:6px}
+.up{color:var(--good);font-weight:600}.dn{color:var(--bad);font-weight:600}
+.prog{height:5px;background:var(--line2);border-radius:1px;margin-top:9px;position:relative}
+.prog span{display:block;height:100%;background:var(--green-bar)}
+.prog i{position:absolute;top:-3px;width:2px;height:11px;background:var(--ink)}
+.stack{display:flex;height:5px;margin-top:9px;gap:2px}
+.stack span{display:block}
+.lg{display:flex;gap:8px;font-size:10.5px;color:var(--ink3);margin-top:6px;white-space:nowrap}
+.lg span{display:flex;align-items:center;gap:4px}.lg i{width:7px;height:7px;display:block}
+
+/* rows & cards */
+.row{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:12px;margin-top:12px}
+@media (max-width:1400px){.row{grid-template-columns:minmax(0,1fr) 330px}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi:nth-child(4){border-left:0}.kpi:nth-child(n+4){border-top:1px solid var(--line2)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:3px;min-width:0}
+.card:has(table){overflow-x:auto}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 16px 0}
+.ch h2{margin:0;font-size:14px;font-weight:600}
+.ch .s{font-size:12px;color:var(--ink3);margin-top:2px}
+.ch a{font-size:12px;font-weight:600;color:var(--green2);text-decoration:none;white-space:nowrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;flex:none}
+.seg span{padding:5px 10px;font-size:12px;font-weight:500;color:var(--ink2);border-left:1px solid var(--line)}
+.seg span:first-child{border-left:0}
+.seg span.on{background:var(--green);color:#fff}
+
+/* chart */
+.chart{position:relative;height:228px;margin:18px 16px 0 48px}
+.gridl{position:absolute;inset:0}
+.gridl div{position:absolute;left:0;right:0;border-top:1px dashed var(--line2)}
+.gridl span{position:absolute;left:-38px;transform:translateY(-50%);font-size:10.5px;color:var(--ink3);width:30px;text-align:right}
+.target{position:absolute;left:0;right:0;border-top:1.5px solid var(--ink);z-index:2}
+.target b{position:absolute;left:6px;top:-21px;font-size:10.5px;font-weight:600;background:var(--ink);color:#fff;padding:2px 6px;border-radius:2px}
+.bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:12px;z-index:1}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.bar .a{background:var(--green-pale)}
+.bar .b{background:#E2E7E4}
+.bar.now .a{background:var(--green)}
+.bar.now .b{background:#8FB8A1}
+.tip{position:absolute;top:13%;right:calc(100% + 10px);background:var(--ink);color:#fff;border-radius:3px;padding:6px 9px;font-size:11.5px;white-space:nowrap;line-height:1.35;z-index:3}
+.tip b{font-size:13px}
+.xl{display:flex;gap:12px;margin:7px 16px 0 48px}
+.xl span{flex:1;text-align:center;font-size:10.5px;color:var(--ink3)}
+.xl span.on{color:var(--ink);font-weight:600}
+.cfoot{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);margin-top:14px}
+.cfoot div{padding:10px 16px;border-left:1px solid var(--line2);font-size:11.5px;color:var(--ink3)}
+.cfoot div:first-child{border-left:0}
+.cfoot b{display:block;font-size:13.5px;color:var(--ink);margin-top:2px}
+.cfoot i{display:inline-block;width:8px;height:8px;margin-right:5px}
+
+/* business lines */
+.dept{padding:10px 16px 4px}
+.dr{padding:9px 0;border-top:1px solid var(--line2)}
+.dr:first-child{border-top:0}
+.dr .t{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dr .t b{font-weight:500}
+.dr .t em{font-style:normal;font-size:11.5px;color:var(--ink3);margin-left:auto}
+.dr .t span{font-weight:600;width:48px;text-align:right}
+.dr .bb{height:7px;background:var(--line2);margin-top:6px;position:relative}
+.dr .bb span{display:block;height:100%}
+.dr .bb i{position:absolute;left:98%;top:-3px;width:2px;height:13px;background:var(--ink)}
+.note{margin:6px 16px 14px;padding:10px 12px;background:var(--sage2);border-left:3px solid var(--green2);font-size:12px;color:var(--ink2);line-height:1.45}
+.note b{color:var(--ink)}
+
+/* tables */
+.tools{display:flex;align-items:center;gap:6px;padding:12px 16px 10px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:500;padding:5px 9px;border-radius:3px;border:1px solid var(--line);color:var(--ink2);display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip em{font-style:normal;opacity:.65}
+.tools .sp{flex:1}
+.bulk{display:flex;align-items:center;gap:10px;margin:0 16px 10px;padding:7px 7px 7px 12px;border-radius:3px;background:var(--sage);border:1px solid var(--green-pale);font-size:12.5px;color:var(--green);font-weight:600}
+.bulk .sp{flex:1}
+table{width:100%;border-collapse:collapse}
+th{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:7px 12px;background:var(--head);border-top:1px solid var(--line2);border-bottom:1px solid var(--line);white-space:nowrap}
+th.n,td.n{text-align:right}
+td{padding:8px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.n,td.nw{white-space:nowrap}
+tr.sel td{background:#F4F8F5}
+.cb{width:14px;height:14px;border-radius:2px;border:1.5px solid #B3BCB7;display:inline-grid;place-items:center;vertical-align:middle}
+.cb.on{background:var(--green);border-color:var(--green)}
+.cb.on::after{content:"";width:7px;height:4px;border-left:1.6px solid #fff;border-bottom:1.6px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.who{display:flex;align-items:center;gap:9px}
+.who .av{width:26px;height:26px;font-size:10.5px;background:var(--sage);color:var(--green)}
+.who small{display:block;color:var(--ink3);font-size:11.5px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-bad{background:var(--badbg);color:var(--bad)}.p-warn{background:var(--warnbg);color:var(--warn)}.p-good{background:var(--goodbg);color:var(--good)}.p-n{background:var(--head);color:var(--ink2)}
+.od{font-weight:600;color:var(--bad)}
+.tfoot{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;font-size:12px;color:var(--ink3)}
+.pager{display:flex;gap:4px}.pager span{width:26px;height:26px;border-radius:3px;display:grid;place-items:center;border:1px solid var(--line);font-weight:500;color:var(--ink2)}.pager span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mini{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.mini .t{width:120px;height:6px;background:var(--line2)}
+.mini .t span{display:block;height:100%}
+.code{font:500 11.5px "IBM Plex Mono";color:var(--ink3)}
+.loc{display:flex;align-items:center;gap:9px}
+.loc .tag{width:26px;height:26px;border-radius:2px;background:var(--head);border:1px solid var(--line);display:grid;place-items:center;font:600 10px "IBM Plex Mono";color:var(--ink2)}
+
+/* coming up */
+.sub{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);padding:12px 16px 4px}
+.it{display:flex;gap:12px;padding:9px 16px;border-top:1px solid var(--line2);align-items:center}
+.sub + .it{border-top:0}
+.date{width:42px;flex:none;text-align:center;border:1px solid var(--line);border-radius:2px;padding:3px 0;background:var(--surface)}
+.date small{display:block;font-size:9.5px;font-weight:600;letter-spacing:.08em;color:var(--ink3)}
+.date b{font-size:16px;font-weight:600}
+.it .t b{display:block;font-size:12.5px;font-weight:600;line-height:1.3}
+.it .t span{font-size:11.5px;color:var(--ink3)}
+.it .r{margin-left:auto;text-align:right;flex:none}
+.it .r b{display:block;font-size:12.5px}
+.it .r small{font-size:11px;color:var(--ink3)}
+.seats{width:64px;height:4px;background:var(--line2);margin:4px 0 0 auto}
+.seats span{display:block;height:100%;background:var(--green-bar)}
+.full3{grid-column:1/-1}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="m"><svg class="i" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-6 10 6"/></svg></div><div><b>Ashgrove Federal</b><span>ACADEMY · ADMIN</span></div></div>
+    <a class="on" href="#"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Overview</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Employees<span class="c">1,284</span></a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Mandatory training<span class="c r">96</span></a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6.5A2.5 2.5 0 0 0 4 21.5"/></svg>Course catalog</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Reports</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Attestations</a>
+    <div class="grp">ADMINISTRATION</div>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Sessions &amp; cohorts</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>Branches &amp; units</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Assignment rules</a>
+    <a href="#"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Access &amp; audit log</a>
+    <div class="sidecard"><b>Annual compliance cycle</b><small>Closes Dec 31, 2026 · 41 days left</small><div class="pb"><span></span></div><div class="r"><span class="num">9,412 of 10,034</span><span class="num">93.8%</span></div></div>
+    <div class="me"><div class="av">DW</div><div><b>Dana Whitmore</b><span>VP, Compliance Training</span></div></div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search employees, courses, branches<kbd>Ctrl K</kbd></div>
+      <span class="env">PROD · US-EAST</span>
+      <span class="sp"></span>
+      <span class="sess">HR feed synced 05:42 ET</span>
+      <div class="ib"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i></i></div>
+      <div class="ib"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
+    </div>
+
+    <div class="wrap">
+      <div class="alert"><svg class="i" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg><span><b>96 employees are past due</b> on at least one regulatory course. Anything still open on Dec 4 goes to the Compliance Committee.</span><a href="#">Review past-due list</a></div>
+
+      <div class="head">
+        <div><div class="crumb">Academy / <b>Enterprise overview</b> · Data as of Nov 20, 2026 06:00 ET</div><h1>Training &amp; compliance overview</h1>
+          <div class="meta"><span class="cyc">FY2026 CYCLE</span><span><svg class="i" style="width:14px;height:14px" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jan 1 – Dec 31, 2026</span><span><svg class="i" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>42 branches · 6 operations centers</span></div></div>
+        <div class="acts">
+          <button class="btn">All regions <svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button class="btn">Last 12 weeks <svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button class="btn"><svg class="i" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button>
+          <button class="btn pri"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Assign training</button>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="l">Active employees</div><div class="v num">1,284</div><div class="d">+17 new hires this month</div></div>
+        <div class="kpi"><div class="l">Mandatory completion</div><div class="v num">93.8<small>%</small></div><div class="prog"><span style="width:93.8%"></span><i style="left:98%"></i></div><div class="d">Target 98% by Dec 31</div></div>
+        <div class="kpi"><div class="l">Past due</div><div class="v num" style="color:var(--bad)">96<small>employees</small></div><div class="d"><span class="dn">▲ 11</span> since last week · 141 items</div></div>
+        <div class="kpi"><div class="l">Due in 30 days</div><div class="v num">385<small>items</small></div><div class="d">212 employees · 9 courses</div></div>
+        <div class="kpi"><div class="l">Training hours, YTD</div><div class="v num">14,706<small>hrs</small></div><div class="d"><span class="up">▲ 6%</span> vs FY2025 same period</div></div>
+        <div class="kpi"><div class="l">Role certifications</div><div class="v num">58<small>in progress</small></div><div class="stack"><span style="flex:32;background:var(--green)"></span><span style="flex:17;background:#8FB8A1"></span><span style="flex:9;background:var(--gold)"></span></div><div class="lg"><span><i style="background:var(--green)"></i>Lending 32</span><span><i style="background:#8FB8A1"></i>Teller 17</span><span><i style="background:var(--gold)"></i>Ops 9</span></div></div>
+      </div>
+
+      <div class="row">
+        <section class="card">
+          <div class="ch"><div><h2>Weekly course completions</h2><div class="s">All assigned courses, FY2026 Q3–Q4 · mandatory vs role-based</div></div><div class="seg"><span>Daily</span><span class="on">Weekly</span><span>Monthly</span></div></div>
+          <div class="chart">
+            <div class="gridl"><div style="top:0"><span>500</span></div><div style="top:25%"><span>375</span></div><div style="top:50%"><span>250</span></div><div style="top:75%"><span>125</span></div><div style="top:100%"><span>0</span></div></div>
+            <div class="target" style="top:30%"><b>Weekly goal 350</b></div>
+            <div class="bars">
+              <div class="bar"><div class="a" style="height:44%"></div><div class="b" style="height:9%"></div></div>
+              <div class="bar"><div class="a" style="height:48%"></div><div class="b" style="height:10%"></div></div>
+              <div class="bar"><div class="a" style="height:52%"></div><div class="b" style="height:9%"></div></div>
+              <div class="bar"><div class="a" style="height:50%"></div><div class="b" style="height:12%"></div></div>
+              <div class="bar"><div class="a" style="height:47%"></div><div class="b" style="height:11%"></div></div>
+              <div class="bar"><div class="a" style="height:55%"></div><div class="b" style="height:10%"></div></div>
+              <div class="bar"><div class="a" style="height:58%"></div><div class="b" style="height:13%"></div></div>
+              <div class="bar"><div class="a" style="height:54%"></div><div class="b" style="height:12%"></div></div>
+              <div class="bar"><div class="a" style="height:60%"></div><div class="b" style="height:12%"></div></div>
+              <div class="bar"><div class="a" style="height:63%"></div><div class="b" style="height:14%"></div></div>
+              <div class="bar"><div class="a" style="height:66%"></div><div class="b" style="height:13%"></div></div>
+              <div class="bar now"><div class="tip"><b>412</b> mandatory · 96 role-based<br>Nov 9 – 15</div><div class="a" style="height:70%"></div><div class="b" style="height:15%"></div></div>
+            </div>
+          </div>
+          <div class="xl"><span>Aug 24</span><span>31</span><span>Sep 7</span><span>14</span><span>21</span><span>28</span><span>Oct 5</span><span>12</span><span>19</span><span>26</span><span>Nov 2</span><span class="on">Nov 9</span></div>
+          <div class="cfoot">
+            <div><i style="background:var(--green)"></i>Mandatory, last week<b class="num">412</b></div>
+            <div><i style="background:#8FB8A1"></i>Role-based, last week<b class="num">96</b></div>
+            <div>Weekly average, Q4<b class="num">338</b></div>
+            <div>Avg. assignment → done<b class="num">11.4 days</b></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="ch"><div><h2>Mandatory completion by business line</h2><div class="s">Marker shows the 98% target</div></div></div>
+          <div class="dept">
+            <div class="dr"><div class="t"><b>Retail branch banking</b><em class="num">4,108 / 4,312</em><span class="num">95.3%</span></div><div class="bb"><span style="width:95.3%;background:var(--green-bar)"></span><i></i></div></div>
+            <div class="dr"><div class="t"><b>Commercial lending</b><em class="num">1,426 / 1,548</em><span class="num">92.1%</span></div><div class="bb"><span style="width:92.1%;background:var(--amber)"></span><i></i></div></div>
+            <div class="dr"><div class="t"><b>Mortgage &amp; consumer</b><em class="num">1,307 / 1,436</em><span class="num">91.0%</span></div><div class="bb"><span style="width:91%;background:var(--amber)"></span><i></i></div></div>
+            <div class="dr"><div class="t"><b>Deposit &amp; payments</b><em class="num">1,288 / 1,352</em><span class="num">95.3%</span></div><div class="bb"><span style="width:95.3%;background:var(--green-bar)"></span><i></i></div></div>
+            <div class="dr"><div class="t"><b>Wealth &amp; trust</b><em class="num">584 / 646</em><span class="num">90.4%</span></div><div class="bb"><span style="width:90.4%;background:var(--bad)"></span><i></i></div></div>
+            <div class="dr"><div class="t"><b>Corporate &amp; shared</b><em class="num">699 / 740</em><span class="num">94.5%</span></div><div class="bb"><span style="width:94.5%;background:var(--green-bar)"></span><i></i></div></div>
+          </div>
+          <div class="note"><b>No business line is at target yet.</b> Wealth &amp; trust and mortgage lending account for 49 of the 96 past-due employees.</div>
+        </section>
+      </div>
+
+      <div class="row">
+        <section class="card">
+          <div class="ch"><div><h2>Needs attention</h2><div class="s">Employees with overdue mandatory training, oldest first</div></div><a href="#">View all 96</a></div>
+          <div class="tools">
+            <span class="chip on">All <em>96</em></span><span class="chip">Escalated to committee <em>28</em></span><span class="chip">Over 30 days <em>17</em></span><span class="chip">Wealth &amp; trust <em>31</em></span>
+            <span class="sp"></span><span class="chip"><svg class="i" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M3 6h18M7 12h10M10 18h4"/></svg>Filters</span>
+          </div>
+          <div class="bulk"><span class="cb on"></span>2 selected<span class="sp"></span><button class="btn sm">Extend due date</button><button class="btn sm pri">Send reminder</button></div>
+          <table>
+            <thead><tr><th style="width:34px"></th><th>Employee</th><th>Overdue course</th><th>Location</th><th class="n">Days</th><th>Escalation</th></tr></thead>
+            <tbody>
+              <tr class="sel"><td><span class="cb on"></span></td><td><div class="who"><div class="av">KS</div><div>Kevin Strand<small>Credit Analyst II</small></div></div></td><td>Fair Lending &amp; ECOA</td><td>Westgate Loan Center</td><td class="n od num">47</td><td><span class="pill p-bad"><i></i>Committee</span></td></tr>
+              <tr class="sel"><td><span class="cb on"></span></td><td><div class="who"><div class="av">RP</div><div>Rosa Pellegrino<small>Trust Officer</small></div></div></td><td>AML &amp; BSA Refresher</td><td>Ashgrove Trust Office</td><td class="n od num">41</td><td><span class="pill p-bad"><i></i>Committee</span></td></tr>
+              <tr><td><span class="cb"></span></td><td><div class="who"><div class="av">DO</div><div>Daniel Okonkwo<small>Mortgage Loan Officer</small></div></div></td><td>Fair Lending &amp; ECOA</td><td>Westgate Loan Center</td><td class="n od num">38</td><td><span class="pill p-bad"><i></i>Committee</span></td></tr>
+              <tr><td><span class="cb"></span></td><td><div class="who"><div class="av">MT</div><div>Megan Talbot<small>Universal Banker</small></div></div></td><td>Info Security Awareness</td><td>Old Mill Road Branch</td><td class="n od num">33</td><td><span class="pill p-warn"><i></i>Senior mgmt</span></td></tr>
+              <tr><td><span class="cb"></span></td><td><div class="who"><div class="av">SB</div><div>Samuel Brightwater<small>Wire Operations</small></div></div></td><td>AML &amp; BSA Refresher</td><td>Harlow Operations Center</td><td class="n od num">29</td><td><span class="pill p-warn"><i></i>Senior mgmt</span></td></tr>
+            </tbody>
+          </table>
+          <div class="tfoot"><span>Showing 1–5 of 96</span><div class="pager"><span>‹</span><span class="on">1</span><span>2</span><span>3</span><span>›</span></div></div>
+        </section>
+
+        <section class="card">
+          <div class="ch"><div><h2>Coming up</h2><div class="s">Deadlines and instructor-led sessions</div></div><a href="#">Calendar</a></div>
+          <div class="sub">Course deadlines</div>
+          <div class="it"><div class="date"><small>NOV</small><b>30</b></div><div class="t"><b>Information Security &amp; Phishing</b><span>1,284 assigned · all staff</span></div><div class="r"><b class="num">95.5%</b><small>complete</small></div></div>
+          <div class="it"><div class="date"><small>DEC</small><b>4</b></div><div class="t"><b>Compliance Committee review</b><span>Signed completion report due</span></div><div class="r"><span class="pill p-warn">14 days</span></div></div>
+          <div class="it"><div class="date"><small>DEC</small><b>15</b></div><div class="t"><b>Fair Lending &amp; ECOA</b><span>612 assigned · lending roles</span></div><div class="r"><b class="num" style="color:var(--bad)">91.3%</b><small>complete</small></div></div>
+          <div class="sub">Instructor-led sessions</div>
+          <div class="it"><div class="date"><small>DEC</small><b>2</b></div><div class="t"><b>New Teller Onboarding, Cohort 26-11</b><span>Dec 2–6 · Harlow Operations Center</span></div><div class="r"><b class="num">14/16</b><div class="seats"><span style="width:88%"></span></div></div></div>
+          <div class="it"><div class="date"><small>DEC</small><b>8</b></div><div class="t"><b>Commercial Credit Analysis II</b><span>Dec 8–10 · virtual</span></div><div class="r"><b class="num">22/24</b><div class="seats"><span style="width:92%"></span></div></div></div>
+          <div class="it"><div class="date"><small>DEC</small><b>11</b></div><div class="t"><b>BSA Officer Roundtable: Q4</b><span>2 hrs · Main Street HQ, Rm 4B</span></div><div class="r"><b class="num">11/12</b><div class="seats"><span style="width:92%"></span></div></div></div>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top:12px">
+        <div class="ch"><div><h2>Branches &amp; operations centers</h2><div class="s">Mandatory completion by location · top 8 by headcount</div></div><div class="seg"><span class="on">All</span><span>North</span><span>Central</span><span>South</span><span>Ops centers</span></div></div>
+        <table style="margin-top:12px">
+          <thead><tr><th>Location</th><th>Region</th><th>Manager</th><th class="n">Headcount</th><th class="n">Assignments</th><th class="n" style="width:220px">Mandatory complete</th><th class="n">Past due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><div class="loc"><span class="tag">HO</span><div>Harlow Operations Center<div class="code">OPS-01</div></div></div></td><td>Operations</td><td>Gregory Ames</td><td class="n num">186</td><td class="n num">1,452</td><td class="n"><div class="mini"><div class="t"><span style="width:97.7%;background:var(--green-bar)"></span></div><span class="num">97.7%</span></div></td><td class="n num">9</td><td><span class="pill p-good"><i></i>On track</span></td></tr>
+            <tr><td><div class="loc"><span class="tag">MS</span><div>Main Street Headquarters<div class="code">HQ-001</div></div></div></td><td>Central</td><td>Lena Whitcombe</td><td class="n num">174</td><td class="n num">1,366</td><td class="n"><div class="mini"><div class="t"><span style="width:95.8%;background:var(--amber)"></span></div><span class="num">95.8%</span></div></td><td class="n num od">14</td><td><span class="pill p-warn"><i></i>At risk</span></td></tr>
+            <tr><td><div class="loc"><span class="tag">CF</span><div>Cedar Falls Branch<div class="code">BR-014</div></div></div></td><td>North</td><td>Arturo Delgado</td><td class="n num">48</td><td class="n num">382</td><td class="n"><div class="mini"><div class="t"><span style="width:96.3%;background:var(--amber)"></span></div><span class="num">96.3%</span></div></td><td class="n num">4</td><td><span class="pill p-warn"><i></i>At risk</span></td></tr>
+            <tr><td><div class="loc"><span class="tag">RB</span><div>Riverbend Branch<div class="code">BR-022</div></div></div></td><td>Central</td><td>Priya Nandakumar</td><td class="n num">44</td><td class="n num">351</td><td class="n"><div class="mini"><div class="t"><span style="width:98.9%;background:var(--green-bar)"></span></div><span class="num">98.9%</span></div></td><td class="n num">1</td><td><span class="pill p-good"><i></i>On track</span></td></tr>
+            <tr><td><div class="loc"><span class="tag">OM</span><div>Old Mill Road Branch<div class="code">BR-009</div></div></div></td><td>South</td><td>Thomas Kerrigan</td><td class="n num">41</td><td class="n num">324</td><td class="n"><div class="mini"><div class="t"><span style="width:91.4%;background:var(--bad)"></span></div><span class="num">91.4%</span></div></td><td class="n num od">11</td><td><span class="pill p-bad"><i></i>Below threshold</span></td></tr>
+            <tr><td><div class="loc"><span class="tag">WL</span><div>Westgate Loan Center<div class="code">LC-003</div></div></div></td><td>Central</td><td>Marcus Ellery</td><td class="n num">37</td><td class="n num">298</td><td class="n"><div class="mini"><div class="t"><span style="width:89.6%;background:var(--bad)"></span></div><span class="num">89.6%</span></div></td><td class="n num od">13</td><td><span class="pill p-bad"><i></i>Below threshold</span></td></tr>
+          </tbody>
+        </table>
+        <div class="tfoot"><span>6 of 48 locations · on track = 97% or more · at risk = 92–96.9%</span><span class="num"><b style="color:var(--ink)">1,284</b> employees · <b style="color:var(--bad)">96</b> past due · <b style="color:var(--ink)">93.8%</b> enterprise-wide</span></div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>
