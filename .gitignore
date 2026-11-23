@@ -1,2 +1,4 @@
 .DS_Store
 _check.html
+# source screen recordings are too big for GitHub (100 MB per file); commit the compressed .mp4 instead
+*.mov
