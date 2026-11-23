@@ -14,12 +14,12 @@
 <body>
 
 <div class="show">
-  <header class="top"><div class="wrap"><a class="mark" href="index-minimal.html"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a></div></header>
+  <header class="top"><div class="wrap"><a class="mark" href="devpixel-redesign-2027.html"><img src="work/assets/Logo%20Final.svg" alt="">DevPixel</a></div></header>
 
   <div class="wrap">
     <section id="top" data-topic="project">
       <div class="pp-head">
-        <div class="crumbs"><a href="index-minimal.html#work">Work</a><i class="ph ph-caret-right"></i><a id="crumbRow" href="index-minimal.html#work"></a></div>
+        <div class="crumbs"><a href="devpixel-redesign-2027.html#work">Work</a><i class="ph ph-caret-right"></i><a id="crumbRow" href="devpixel-redesign-2027.html#work"></a></div>
         <h1 class="x" id="pname"></h1>
         <div class="ptag2" id="ptag"></div>
         <div class="pstats" id="pstats"></div>
@@ -95,7 +95,7 @@ let scr=0, view='';
 document.title=`${p.name} — DevPixel`;
 
 /* left side */
-$('crumbRow').textContent=row.name; $('crumbRow').href=`index-minimal.html#${p.row}`;
+$('crumbRow').textContent=row.name; $('crumbRow').href=`devpixel-redesign-2027.html#${p.row}`;
 $('pname').textContent=p.name; $('ptag').textContent=p.tag;
 if(p.facts) $('pstats').innerHTML=p.facts.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join(''); else $('pstats').remove();
 if(p.screens.length>1) $('tabs').innerHTML=p.screens.map((s,i)=>`<button class="vtab" data-i="${i}">${s.label}</button>`).join('');
@@ -109,7 +109,7 @@ const card=x=>`<a class="card wk" href="project.html?p=${x}">
   <div class="wk-h"><div><h3 class="x">${P[x].name}</h3><span class="tag">${P[x].tag}</span></div><span class="wk-ic"><i class="ph ph-arrow-right"></i></span></div>
   <div class="screen"><div class="bar"><i></i><i></i><i></i><span>${P[x].screens[0].url}</span></div><div class="vp"><iframe src="${P[x].screens[0].src}" title="${P[x].name}" loading="lazy" scrolling="no"></iframe></div></div></a>`;
 $('moreTitle').textContent=`More in ${row.name}`; $('moreCount').textContent=String(sibs.length).padStart(2,'0');
-$('moreGrid').innerHTML=sibs.map(card).join('')+(sibs.length===1?`<a class="card allwork" href="index-minimal.html#work"><div><h3 class="x">All work</h3><p>AI products, platforms and websites.</p></div><span class="more-l">Back to all work${ARROW}</span></a>`:'');
+$('moreGrid').innerHTML=sibs.map(card).join('')+(sibs.length===1?`<a class="card allwork" href="devpixel-redesign-2027.html#work"><div><h3 class="x">All work</h3><p>AI products, platforms and websites.</p></div><span class="more-l">Back to all work${ARROW}</span></a>`:'');
 
 /* right side */
 const projectView=()=>{const s=p.screens[scr];
@@ -123,8 +123,8 @@ function say(v){ if(v===view&&body.innerHTML) return; view=v;
 
 window.DP={
   act(a){ if(a.startsWith('p:')){const x=a.slice(2); if(x===pid) scrollTo(0,0); else location.href=`project.html?p=${x}`;}
-          else if(a.startsWith('go:')){const id=a.slice(3); location.href=`index-minimal.html#${id==='top'?'':id}`;}
-          else if(a==='back') location.href=`index-minimal.html#${p.row}`; },
+          else if(a.startsWith('go:')){const id=a.slice(3); location.href=`devpixel-redesign-2027.html#${id==='top'?'':id}`;}
+          else if(a==='back') location.href=`devpixel-redesign-2027.html#${p.row}`; },
   here(){ return pid; },
   rerender(){ const [h,a]=view==='project'?projectView():moreView(); render(h,a); }
 };

@@ -1,4 +1,4 @@
-/* DevPixel site content, shared by index-minimal.html and project.html.
+/* DevPixel site content, shared by devpixel-redesign-2027.html and project.html.
    Follow-ups use q:<key> (answered from QA), go:<id> (go to a part of the site) or p:<id> (a project). */
 
 const ROWS={
